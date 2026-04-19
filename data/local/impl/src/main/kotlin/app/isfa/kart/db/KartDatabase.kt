@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import app.isfa.kart.db.api.converter.BrandTypeConverters
 import app.isfa.kart.db.api.converter.CardTypeConverters
+import app.isfa.kart.db.api.converter.MerchantCategoryConverters
 import app.isfa.kart.db.api.converter.SubscriptionTypeConverters
 import app.isfa.kart.db.api.dao.KartBrandInfoDao
 import app.isfa.kart.db.api.dao.KartLastOpenedDao
@@ -23,13 +24,14 @@ import kotlinx.coroutines.Dispatchers
         KartMembershipEntity::class,
         KartBrandInfoEntity::class,
         KartSubscriptionEntity::class,
-        KartLastOpenedEntity::class
+//        KartLastOpenedEntity::class
     ],
     version = KartDatabase.VERSION
 )
 @TypeConverters(
     CardTypeConverters::class,
     SubscriptionTypeConverters::class,
+    MerchantCategoryConverters::class,
     BrandTypeConverters::class
 )
 abstract class KartDatabase : RoomDatabase() {
@@ -37,7 +39,7 @@ abstract class KartDatabase : RoomDatabase() {
     abstract fun brandInfoDao(): KartBrandInfoDao
     abstract fun membershipDao(): KartMembershipDao
     abstract fun subscriptionDao(): KartSubscriptionDao
-    abstract fun lastOpenedDao(): KartLastOpenedDao
+//    abstract fun lastOpenedDao(): KartLastOpenedDao
 
     companion object {
         internal const val VERSION = 2

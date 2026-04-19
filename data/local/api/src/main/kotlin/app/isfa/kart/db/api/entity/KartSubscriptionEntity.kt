@@ -1,5 +1,6 @@
 package app.isfa.kart.db.api.entity
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
@@ -25,5 +26,6 @@ data class KartSubscriptionEntity(
     val accountId: String,
     val cardType: CardType,
     val subscriptionType: SubscriptionType = SubscriptionType.None,
+    @ColumnInfo(name = "brand_slug")
     val brandSlug: String,
 )

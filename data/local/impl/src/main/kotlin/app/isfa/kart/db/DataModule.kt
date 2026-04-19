@@ -7,6 +7,9 @@ import app.isfa.kart.db.api.dao.KartSubscriptionDao
 import app.isfa.kart.db.api.source.brand.KartBrandInfoDataSource
 import app.isfa.kart.db.api.source.membership.KartMembershipDataSource
 import app.isfa.kart.db.api.source.subscription.KartSubscriptionDataSource
+import app.isfa.kart.db.impl.KartBrandInfoDataSourceImpl
+import app.isfa.kart.db.impl.KartMembershipDataSourceImpl
+import app.isfa.kart.db.impl.KartSubscriptionDataSourceImpl
 
 object DataModule {
 

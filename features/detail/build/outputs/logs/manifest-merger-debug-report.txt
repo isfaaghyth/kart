@@ -1,0 +1,16 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/isfa/AndroidStudioProjects/kart/features/detail/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13820070073023212050.xml:2:13-83
+INJECTED from /Users/isfa/AndroidStudioProjects/kart/features/detail/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13820070073023212050.xml:2:13-83
+	package
+		INJECTED from /Users/isfa/AndroidStudioProjects/kart/features/detail/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13820070073023212050.xml
+	xmlns:android
+		ADDED from /Users/isfa/AndroidStudioProjects/kart/features/detail/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13820070073023212050.xml:2:23-81
+uses-sdk
+INJECTED from /Users/isfa/AndroidStudioProjects/kart/features/detail/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13820070073023212050.xml reason: use-sdk injection requested
+INJECTED from /Users/isfa/AndroidStudioProjects/kart/features/detail/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13820070073023212050.xml
+INJECTED from /Users/isfa/AndroidStudioProjects/kart/features/detail/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13820070073023212050.xml
+	android:targetSdkVersion
+		INJECTED from /Users/isfa/AndroidStudioProjects/kart/features/detail/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13820070073023212050.xml
+	android:minSdkVersion
+		INJECTED from /Users/isfa/AndroidStudioProjects/kart/features/detail/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest13820070073023212050.xml

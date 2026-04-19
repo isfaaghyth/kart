@@ -2,6 +2,7 @@ package app.isfa.kart.db
 
 import app.isfa.kart.db.api.dao.KartMembershipDao
 import app.isfa.kart.db.api.entity.KartMembershipEntity
+import app.isfa.kart.db.api.source.brand.KartBrandModel
 import app.isfa.kart.db.api.source.membership.CreateKartMembershipModel
 import app.isfa.kart.db.api.source.membership.KartMembershipDataSource
 import app.isfa.kart.db.api.source.membership.KartMembershipModel
@@ -11,14 +12,20 @@ import kotlinx.coroutines.flow.map
 class KartMembershipDataSourceImpl(private val dao: KartMembershipDao) : KartMembershipDataSource {
 
     override fun members(): Flow<List<KartMembershipModel>> {
-        return dao.all().map {
-            it.map { entity ->
+        return dao.all().map { list ->
+            list.map { joined ->
                 KartMembershipModel(
-                    id = entity.id,
-                    accountId = entity.accountId,
-                    cardType = entity.cardType,
-                    merchantName = entity.merchantName,
-                    merchantCategory = entity.merchantCategory,
+                    id = joined.member.id,
+                    accountId = joined.member.accountId,
+                    cardType = joined.member.cardType,
+                    brand = KartBrandModel(
+                        slug = joined.brand.slug,
+                        name = joined.brand.name,
+                        type = joined.brand.type,
+                        faviconUrl = joined.brand.faviconUrl,
+                        url = joined.brand.url,
+                        colors = joined.brand.colors,
+                    ),
                 )
             }
         }
@@ -29,8 +36,8 @@ class KartMembershipDataSourceImpl(private val dao: KartMembershipDao) : KartMem
             KartMembershipEntity(
                 accountId = model.accountId,
                 cardType = model.cardType,
-                merchantName = model.merchantName,
-                merchantCategory = model.merchantCategory
+                brandSlug = model.brandSlug,
+                category = model.category
             )
         )
     }
@@ -40,8 +47,8 @@ class KartMembershipDataSourceImpl(private val dao: KartMembershipDao) : KartMem
             KartMembershipEntity(
                 accountId = model.accountId,
                 cardType = model.cardType,
-                merchantName = model.merchantName,
-                merchantCategory = model.merchantCategory
+                brandSlug = model.brandSlug,
+                category = model.category
             )
         )
     }

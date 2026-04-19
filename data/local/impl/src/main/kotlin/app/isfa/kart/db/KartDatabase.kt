@@ -7,7 +7,6 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import app.isfa.kart.db.api.converter.BrandTypeConverters
 import app.isfa.kart.db.api.converter.CardTypeConverters
-import app.isfa.kart.db.api.converter.MerchantCategoryConverters
 import app.isfa.kart.db.api.converter.SubscriptionTypeConverters
 import app.isfa.kart.db.api.dao.KartBrandInfoDao
 import app.isfa.kart.db.api.dao.KartLastOpenedDao
@@ -30,7 +29,6 @@ import kotlinx.coroutines.Dispatchers
 )
 @TypeConverters(
     CardTypeConverters::class,
-    MerchantCategoryConverters::class,
     SubscriptionTypeConverters::class,
     BrandTypeConverters::class
 )
@@ -42,11 +40,12 @@ abstract class KartDatabase : RoomDatabase() {
     abstract fun lastOpenedDao(): KartLastOpenedDao
 
     companion object {
-        private const val VERSION = 1
+        internal const val VERSION = 2
         private const val NAME = "with_kart"
 
         fun create(appContext: Context): KartDatabase {
             return Room.databaseBuilder(appContext, KartDatabase::class.java, NAME)
+                .fallbackToDestructiveMigration(false)
                 .fallbackToDestructiveMigrationOnDowngrade(true)
                 .setQueryCoroutineContext(Dispatchers.IO)
                 .build()

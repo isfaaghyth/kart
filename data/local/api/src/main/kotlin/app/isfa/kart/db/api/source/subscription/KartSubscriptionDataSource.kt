@@ -6,7 +6,7 @@ interface KartSubscriptionDataSource {
 
     fun subscriptions(): Flow<List<KartSubscriptionModel>>
 
-    suspend fun insert(model: CreateKartSubscriptionModel)
+    suspend fun insert(model: CreateKartSubscriptionModel): Result<Boolean>
 
     suspend fun update(model: CreateKartSubscriptionModel)
 

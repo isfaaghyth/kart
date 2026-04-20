@@ -6,7 +6,7 @@ interface KartMembershipDataSource {
 
     fun members(): Flow<List<KartMembershipModel>>
 
-    suspend fun insert(model: CreateKartMembershipModel)
+    suspend fun insert(model: CreateKartMembershipModel): Result<Boolean>
 
     suspend fun update(model: CreateKartMembershipModel)
 

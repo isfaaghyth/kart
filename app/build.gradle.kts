@@ -55,6 +55,7 @@ dependencies {
     implementation(project(":features:home"))
     implementation(project(":features:detail"))
     implementation(project(":libraries:design-system"))
+    implementation(project(":libraries:i18n"))
     implementation(project(":libraries:navigation"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

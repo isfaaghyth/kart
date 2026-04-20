@@ -2,28 +2,38 @@ package app.isfa.kart
 
 import android.content.Context
 import app.isfa.kart.db.DataModule
-import app.isfa.kart.db.api.source.membership.KartMembershipDataSource
 import app.isfa.kart.repository.RepositoryModule
 import app.isfa.kart.repository.api.KartAddCardRepository
 import app.isfa.kart.repository.api.KartBrandInfoRepository
 import app.isfa.kart.repository.api.KartCardRepository
 import app.isfa.kart.repository.api.KartSearchCardRepository
+import com.isfa.kart.str.impl.GlobalStringProvider
+import com.isfa.kart.str.impl.KartStringProvider
 
 class DIModuleManager(context: Context) {
 
-    val db = DataModule.providesKartDatabase(context)
+    private val db = DataModule.providesKartDatabase(context)
+    private val stringProvider = GlobalStringProvider(
+        KartStringProvider(context)
+    )
 
     // Membership
-    val membershipDao = DataModule.providesKartMembershipDao(db)
-    val membershipDataSource = DataModule.providesKartMembershipDataSource(membershipDao)
+    private val membershipDao = DataModule.providesKartMembershipDao(db)
+    private val membershipDataSource = DataModule.providesKartMembershipDataSource(
+        dao = membershipDao,
+        stringProvider = stringProvider
+    )
 
     // Subscription
-    val subscriptionDao = DataModule.providesKartSubscriptionDao(db)
-    val subscriptionDataSource = DataModule.providesKartSubscriptionDataSource(subscriptionDao)
+    private val subscriptionDao = DataModule.providesKartSubscriptionDao(db)
+    private val subscriptionDataSource = DataModule.providesKartSubscriptionDataSource(
+        dao = subscriptionDao,
+        stringProvider = stringProvider
+    )
 
     // Brand Info
-    val brandInfoDao = DataModule.providesKartBrandInfoDao(db)
-    val brandInfoDataSource = DataModule.providesKartBrandInfoDataSource(brandInfoDao)
+    private val brandInfoDao = DataModule.providesKartBrandInfoDao(db)
+    private val brandInfoDataSource = DataModule.providesKartBrandInfoDataSource(brandInfoDao)
 
     fun kartFetchCardRepository(): KartCardRepository {
         return RepositoryModule.providesKartCardRepository(

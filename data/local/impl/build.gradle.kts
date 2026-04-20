@@ -18,6 +18,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.kotlinx.serialization.core)
     implementation(project(":data:local:api"))
+    implementation(project(":libraries:i18n"))
 
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)

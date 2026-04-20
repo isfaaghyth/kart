@@ -29,6 +29,7 @@ include(":features:detail")
 include(":features:home")
 
 include(":libraries:design-system")
+include(":libraries:i18n")
 include(":libraries:navigation")
 include(":libraries:utilities")
 

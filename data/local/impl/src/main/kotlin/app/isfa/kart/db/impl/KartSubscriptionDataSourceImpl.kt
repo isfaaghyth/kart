@@ -6,10 +6,15 @@ import app.isfa.kart.db.api.source.brand.KartBrandModel
 import app.isfa.kart.db.api.source.subscription.CreateKartSubscriptionModel
 import app.isfa.kart.db.api.source.subscription.KartSubscriptionDataSource
 import app.isfa.kart.db.api.source.subscription.KartSubscriptionModel
+import com.isfa.kart.str.StringProvider
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
-class KartSubscriptionDataSourceImpl(private val dao: KartSubscriptionDao) : KartSubscriptionDataSource {
+class KartSubscriptionDataSourceImpl(
+    private val dao: KartSubscriptionDao,
+    private val stringProvider: StringProvider
+) : KartSubscriptionDataSource {
 
     override fun subscriptions(): Flow<List<KartSubscriptionModel>> {
         return dao.all().map { list ->
@@ -33,8 +38,12 @@ class KartSubscriptionDataSourceImpl(private val dao: KartSubscriptionDao) : Kar
         }
     }
 
-    override suspend fun insert(model: CreateKartSubscriptionModel) {
-        dao.insert(
+    override suspend fun insert(model: CreateKartSubscriptionModel): Result<Boolean> {
+        if (subscriptions().first().any { it.accountId == model.accountId }) {
+            return Result.failure(Throwable(stringProvider.duplicateAccountId()))
+        }
+
+        val insertion = dao.insert(
             KartSubscriptionEntity(
                 accountId = model.accountId,
                 cardType = model.cardType,
@@ -42,6 +51,12 @@ class KartSubscriptionDataSourceImpl(private val dao: KartSubscriptionDao) : Kar
                 brandSlug = model.brandSlug,
             )
         )
+
+        return if (insertion > 0) {
+            Result.success(true)
+        } else {
+            Result.failure(Throwable(stringProvider.unexpectedError()))
+        }
     }
 
     override suspend fun update(model: CreateKartSubscriptionModel) {

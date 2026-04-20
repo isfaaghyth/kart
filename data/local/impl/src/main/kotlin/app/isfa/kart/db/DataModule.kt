@@ -10,6 +10,7 @@ import app.isfa.kart.db.api.source.subscription.KartSubscriptionDataSource
 import app.isfa.kart.db.impl.KartBrandInfoDataSourceImpl
 import app.isfa.kart.db.impl.KartMembershipDataSourceImpl
 import app.isfa.kart.db.impl.KartSubscriptionDataSourceImpl
+import com.isfa.kart.str.StringProvider
 
 object DataModule {
 
@@ -24,9 +25,13 @@ object DataModule {
     fun providesKartBrandInfoDataSource(dao: KartBrandInfoDao): KartBrandInfoDataSource =
         KartBrandInfoDataSourceImpl(dao)
 
-    fun providesKartMembershipDataSource(dao: KartMembershipDao): KartMembershipDataSource =
-        KartMembershipDataSourceImpl(dao)
+    fun providesKartMembershipDataSource(
+        dao: KartMembershipDao,
+        stringProvider: StringProvider
+    ): KartMembershipDataSource = KartMembershipDataSourceImpl(dao, stringProvider)
 
-    fun providesKartSubscriptionDataSource(dao: KartSubscriptionDao): KartSubscriptionDataSource =
-        KartSubscriptionDataSourceImpl(dao)
+    fun providesKartSubscriptionDataSource(
+        dao: KartSubscriptionDao,
+        stringProvider: StringProvider
+    ): KartSubscriptionDataSource = KartSubscriptionDataSourceImpl(dao, stringProvider)
 }

@@ -54,6 +54,7 @@ dependencies {
     implementation(project(":data:repository:impl"))
     implementation(project(":features:home"))
     implementation(project(":features:detail"))
+    implementation(project(":features:input"))
     implementation(project(":libraries:design-system"))
     implementation(project(":libraries:i18n"))
     implementation(project(":libraries:navigation"))

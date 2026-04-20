@@ -11,4 +11,7 @@ sealed interface Navigation : NavKey {
 
     @Serializable
     data object Detail : Navigation
+
+    @Serializable
+    data object Input : Navigation
 }

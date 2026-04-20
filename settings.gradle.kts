@@ -27,6 +27,7 @@ include(":app")
 
 include(":features:detail")
 include(":features:home")
+include(":features:input")
 
 include(":libraries:design-system")
 include(":libraries:i18n")

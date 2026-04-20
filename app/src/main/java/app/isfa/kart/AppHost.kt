@@ -1,6 +1,5 @@
 package app.isfa.kart
 
-import com.isfa.kart.home.HomeScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.mutableStateListOf
@@ -9,6 +8,8 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import com.isfa.kart.detail.DetailCardScreen
+import com.isfa.kart.home.HomeScreen
+import com.isfa.kart.input.InputCardScreen
 import com.isfa.kart.navigation.KartNavigator
 import com.isfa.kart.navigation.LocalNavigator
 import com.isfa.kart.navigation.Navigation
@@ -25,6 +26,7 @@ fun AppHost() {
             entryProvider = entryProvider {
                 entry<Navigation.Home> { HomeScreen() }
                 entry<Navigation.Detail> { DetailCardScreen() }
+                entry<Navigation.Input> { InputCardScreen() }
             }
         )
     }

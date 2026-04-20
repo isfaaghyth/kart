@@ -9,7 +9,7 @@ class KartNavigator(private val backStack: MutableList<NavKey>) {
 
     fun navigateTo(route: Navigation) = backStack.add(route)
 
-    fun navigateAndClear(route: Navigation) {
+    fun pushTo(route: Navigation) {
         backStack.clear()
         backStack.add(route)
     }

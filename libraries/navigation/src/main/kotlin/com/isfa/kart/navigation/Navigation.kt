@@ -10,7 +10,7 @@ sealed interface Navigation : NavKey {
     data object Home : Navigation
 
     @Serializable
-    data object Detail : Navigation
+    data class Detail(val cardId: Int) : Navigation
 
     @Serializable
     data object Input : Navigation

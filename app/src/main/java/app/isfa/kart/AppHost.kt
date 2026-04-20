@@ -25,7 +25,7 @@ fun AppHost() {
             onBack = { backStack.removeLastOrNull() },
             entryProvider = entryProvider {
                 entry<Navigation.Home> { HomeScreen() }
-                entry<Navigation.Detail> { DetailCardScreen() }
+                entry<Navigation.Detail> { DetailCardScreen(it.cardId) }
                 entry<Navigation.Input> { InputCardScreen() }
             }
         )

@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.isfa.kart.navigation.Navigation
 
 @Composable
-fun DetailCardScreen() {
+fun DetailCardScreen(cardId: Int) {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -29,5 +29,5 @@ fun DetailCardScreen() {
 @Composable
 @Preview
 fun DetailCardScreenPreview() {
-    DetailCardScreen()
+    DetailCardScreen(0)
 }

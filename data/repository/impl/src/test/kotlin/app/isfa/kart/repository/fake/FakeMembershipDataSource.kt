@@ -19,7 +19,12 @@ class FakeMembershipDataSource(
     fun emit(members: List<KartMembershipModel>) { flow.value = members }
 
     override fun members(): Flow<List<KartMembershipModel>> = flow
-    override suspend fun insert(model: CreateKartMembershipModel) { insertedModels += model }
+
+    override suspend fun insert(model: CreateKartMembershipModel): Result<Boolean> {
+        insertedModels += model
+        return Result.success(true)
+    }
+
     override suspend fun update(model: CreateKartMembershipModel) { updatedModels += model }
     override suspend fun delete(cardId: Int) { deletedIds += cardId }
 }

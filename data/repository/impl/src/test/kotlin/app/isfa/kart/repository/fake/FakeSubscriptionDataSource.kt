@@ -19,7 +19,12 @@ class FakeSubscriptionDataSource(
     fun emit(subs: List<KartSubscriptionModel>) { flow.value = subs }
 
     override fun subscriptions(): Flow<List<KartSubscriptionModel>> = flow
-    override suspend fun insert(model: CreateKartSubscriptionModel) { insertedModels += model }
+
+    override suspend fun insert(model: CreateKartSubscriptionModel): Result<Boolean> {
+        insertedModels += model
+        return Result.success(true)
+    }
+
     override suspend fun update(model: CreateKartSubscriptionModel) { updatedModels += model }
     override suspend fun delete(subscriptionId: Int) { deletedIds += subscriptionId }
 }

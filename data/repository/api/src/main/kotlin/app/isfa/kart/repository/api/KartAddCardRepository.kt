@@ -9,11 +9,11 @@ interface KartAddCardRepository {
      * Adds a new membership card.
      * [CreateKartMembershipModel.brandSlug] must reference a known brand in [brand_infos].
      */
-    suspend fun addMember(model: CreateKartMembershipModel)
+    suspend fun addMember(model: CreateKartMembershipModel): Result<Boolean>
 
     /**
      * Adds a new subscription card.
      * [CreateKartSubscriptionModel.brandSlug] must reference a known brand in [brand_infos].
      */
-    suspend fun addSubscription(model: CreateKartSubscriptionModel)
+    suspend fun addSubscription(model: CreateKartSubscriptionModel): Result<Boolean>
 }

@@ -34,3 +34,6 @@ include(":libraries:utilities")
 
 include(":data:local:api")
 include(":data:local:impl")
+
+include(":data:repository:api")
+include(":data:repository:impl")

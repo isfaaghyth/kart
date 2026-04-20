@@ -22,6 +22,7 @@ class KartMembershipDataSourceImpl(private val dao: KartMembershipDao) : KartMem
                         slug = joined.brand.slug,
                         name = joined.brand.name,
                         type = joined.brand.type,
+                        category = joined.brand.category,
                         faviconUrl = joined.brand.faviconUrl,
                         url = joined.brand.url,
                         colors = joined.brand.colors,
@@ -37,7 +38,6 @@ class KartMembershipDataSourceImpl(private val dao: KartMembershipDao) : KartMem
                 accountId = model.accountId,
                 cardType = model.cardType,
                 brandSlug = model.brandSlug,
-                category = model.category
             )
         )
     }
@@ -48,7 +48,6 @@ class KartMembershipDataSourceImpl(private val dao: KartMembershipDao) : KartMem
                 accountId = model.accountId,
                 cardType = model.cardType,
                 brandSlug = model.brandSlug,
-                category = model.category
             )
         )
     }

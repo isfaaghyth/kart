@@ -6,7 +6,6 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import app.isfa.kart.db.api.CardType
-import app.isfa.kart.db.api.MerchantCategory
 
 @Entity(
     tableName = "kart_members",
@@ -23,9 +22,11 @@ import app.isfa.kart.db.api.MerchantCategory
 data class KartMembershipEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
+
     val accountId: String,
+
     val cardType: CardType,
+
     @ColumnInfo(name = "brand_slug")
     val brandSlug: String,
-    val category: MerchantCategory
 )

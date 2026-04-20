@@ -21,10 +21,10 @@ import kotlinx.coroutines.Dispatchers
 
 @Database(
     entities = [
-        KartMembershipEntity::class,
         KartBrandInfoEntity::class,
+        KartMembershipEntity::class,
         KartSubscriptionEntity::class,
-//        KartLastOpenedEntity::class
+//        KartLastOpenedEntity::class,
     ],
     version = KartDatabase.VERSION
 )
@@ -32,7 +32,7 @@ import kotlinx.coroutines.Dispatchers
     CardTypeConverters::class,
     SubscriptionTypeConverters::class,
     MerchantCategoryConverters::class,
-    BrandTypeConverters::class
+    BrandTypeConverters::class,
 )
 abstract class KartDatabase : RoomDatabase() {
 
@@ -42,12 +42,12 @@ abstract class KartDatabase : RoomDatabase() {
 //    abstract fun lastOpenedDao(): KartLastOpenedDao
 
     companion object {
-        internal const val VERSION = 2
-        private const val NAME = "with_kart"
+        internal const val VERSION = 1
+        private const val NAME = "kart_app"
 
         fun create(appContext: Context): KartDatabase {
             return Room.databaseBuilder(appContext, KartDatabase::class.java, NAME)
-                .fallbackToDestructiveMigration(false)
+                .fallbackToDestructiveMigration(true)
                 .fallbackToDestructiveMigrationOnDowngrade(true)
                 .setQueryCoroutineContext(Dispatchers.IO)
                 .build()

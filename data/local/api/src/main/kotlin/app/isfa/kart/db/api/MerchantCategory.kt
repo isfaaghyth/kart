@@ -8,5 +8,7 @@ enum class MerchantCategory(val merchantName: String) {
     Restaurant("Restaurant"),
     Gas("Gas"),
     Pharmacy("Pharmacy"),
+    Entertainment("Entertainment"),
+    Cloud("Cloud"),
     Other("Other");
 }

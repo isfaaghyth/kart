@@ -1,8 +1,10 @@
 package app.isfa.kart.db.api.entity
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import app.isfa.kart.db.api.BrandTypeOf
+import app.isfa.kart.db.api.MerchantCategory
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -18,6 +20,10 @@ data class KartBrandInfoEntity(
 
     @SerialName("type")
     val type: BrandTypeOf,
+
+    @ColumnInfo(name = "category")
+    @SerialName("category")
+    val category: MerchantCategory,
 
     @SerialName("favicon")
     val faviconUrl: String,

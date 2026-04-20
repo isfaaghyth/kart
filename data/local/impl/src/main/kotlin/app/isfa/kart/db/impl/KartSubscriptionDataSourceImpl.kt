@@ -23,6 +23,7 @@ class KartSubscriptionDataSourceImpl(private val dao: KartSubscriptionDao) : Kar
                         slug = joined.brand.slug,
                         name = joined.brand.name,
                         type = joined.brand.type,
+                        category = joined.brand.category,
                         faviconUrl = joined.brand.faviconUrl,
                         url = joined.brand.url,
                         colors = joined.brand.colors,

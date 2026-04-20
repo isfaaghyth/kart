@@ -23,9 +23,13 @@ import app.isfa.kart.db.api.SubscriptionType
 data class KartSubscriptionEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
+
     val accountId: String,
+
     val cardType: CardType,
+
     val subscriptionType: SubscriptionType = SubscriptionType.None,
+
     @ColumnInfo(name = "brand_slug")
     val brandSlug: String,
 )

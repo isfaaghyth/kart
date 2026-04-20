@@ -50,6 +50,8 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(project(":data:local:api"))
     implementation(project(":data:local:impl"))
+    implementation(project(":data:repository:api"))
+    implementation(project(":data:repository:impl"))
     implementation(project(":features:home"))
     implementation(project(":features:detail"))
     implementation(project(":libraries:design-system"))

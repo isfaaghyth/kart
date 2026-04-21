@@ -106,8 +106,8 @@ fun KartCard(
 fun KartTextField(
     value: String,
     onValueChange: (String) -> Unit,
-    label: String,
     modifier: Modifier = Modifier,
+    label: String = "",
     placeholder: String? = null,
     leadingIcon: ImageVector? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
@@ -117,12 +117,14 @@ fun KartTextField(
     val isFocused by interactionSource.collectIsFocusedAsState()
 
     Column(modifier = modifier) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
+        if (label.isNotEmpty()) {
+            Text(
+                text = label,
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+        }
         TextField(
             value = value,
             onValueChange = onValueChange,

@@ -2,4 +2,7 @@
 <resources>
     <string name="error_unexpected_flow">Something went wrong, please try again.</string>
     <string name="error_duplicate_account_id">Your %1$s ID already exist!</string>
+
+    <string name="home_greeting_wave">Hi bos! 👋</string>
+    <string name="home_greeting_caption">Which card would you like to use today?</string>
 </resources>

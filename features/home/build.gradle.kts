@@ -23,6 +23,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(project(":data:repository:api"))
     implementation(project(":libraries:design-system"))
+    implementation(project(":libraries:i18n"))
     implementation(project(":libraries:navigation"))
     implementation(project(":libraries:utilities"))
     implementation(platform(libs.androidx.compose.bom))
@@ -30,4 +31,5 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    debugImplementation(libs.androidx.compose.ui.tooling)
 }

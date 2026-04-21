@@ -1,5 +1,6 @@
 package com.isfa.kart.design
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -98,7 +99,14 @@ fun KartCard(
         modifier = modifier,
         shape = Shapes.large,
         color = containerColor,
-        content = content
+        content = content,
+        shadowElevation = 2.dp,
+        border = BorderStroke(
+            width = 0.5.dp,
+            color = MaterialTheme.colorScheme.outline.copy(
+                alpha = 0.2f
+            )
+        )
     )
 }
 

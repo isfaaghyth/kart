@@ -3,24 +3,20 @@ package com.isfa.kart.home.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -32,21 +28,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import app.isfa.kart.i18n.R
 import com.isfa.kart.design.KartActionChip
-import com.isfa.kart.design.KartCard
-import com.isfa.kart.design.KartPrimaryContainer
 import com.isfa.kart.design.KartSpacing
-import com.isfa.kart.design.KartTertiary
 import com.isfa.kart.design.KartTextField
 import com.isfa.kart.design.KartTheme
 import com.isfa.kart.home.HomeUiState
+import com.isfa.kart.home.ui.component.HomeGreeting
 import com.isfa.kart.home.ui.component.KartItemCard
 
 @Composable
@@ -88,6 +79,17 @@ fun HomeScreenContent(state: HomeUiState) {
                 )
             }
         },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { /* TODO: Add new card */ },
+                containerColor = MaterialTheme.colorScheme.primary
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "Add New Card"
+                )
+            }
+        },
         containerColor = MaterialTheme.colorScheme.surface
     ) { paddingValues ->
         LazyColumn(
@@ -100,26 +102,7 @@ fun HomeScreenContent(state: HomeUiState) {
             verticalArrangement = Arrangement.spacedBy(KartSpacing.micro)
         ) {
             // Greeting
-            item {
-                Column(verticalArrangement = Arrangement.spacedBy(KartSpacing.micro)) {
-                    Text(
-                        text = "Tue 21 Apr".uppercase(),
-                        style = MaterialTheme.typography.labelMedium.copy(
-                            fontWeight = FontWeight.Bold,
-                            letterSpacing = 1.1.sp
-                        ),
-                        color = MaterialTheme.colorScheme.outline
-                    )
-                    Text(
-                        stringResource(R.string.home_greeting_wave),
-                        style = MaterialTheme.typography.headlineMedium
-                    )
-                    Text(
-                        stringResource(R.string.home_greeting_caption),
-                        style = MaterialTheme.typography.headlineLarge
-                    )
-                }
-            }
+            item { HomeGreeting() }
 
             // Search Box
             item {
@@ -162,12 +145,27 @@ fun HomeScreenContent(state: HomeUiState) {
             }
 
             // Card List
-            items(count = 10) {
-                KartItemCard(
-                    brandName = "Fore",
-                    accountId = "123",
-                    onCardClicked = {}
-                )
+            val itemCount = 100
+            items(count = (itemCount + 1) / 2) { rowIndex ->
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(KartSpacing.micro)
+                ) {
+                    for (columnIndex in 0 until 2) {
+                        val itemIndex = rowIndex * 2 + columnIndex
+                        if (itemIndex < itemCount) {
+                            Box(modifier = Modifier.weight(1f)) {
+                                KartItemCard(
+                                    brandName = "Fore",
+                                    accountId = "123",
+                                    onCardClicked = {}
+                                )
+                            }
+                        } else {
+                            Spacer(modifier = Modifier.weight(1f))
+                        }
+                    }
+                }
             }
         }
     }

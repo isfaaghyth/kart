@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.isfa.kart.home.ui
 
 import androidx.compose.foundation.background
@@ -15,6 +17,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -39,6 +42,7 @@ import com.isfa.kart.design.KartTheme
 import com.isfa.kart.home.HomeUiState
 import com.isfa.kart.home.ui.component.HomeGreeting
 import com.isfa.kart.home.ui.component.KartItemCard
+import com.isfa.kart.input.InputCardBottomSheet
 
 @Composable
 fun HomeScreenContent(state: HomeUiState) {
@@ -46,6 +50,8 @@ fun HomeScreenContent(state: HomeUiState) {
 
     var keywordSearch by remember { mutableStateOf("") }
     var selectedCategory by remember { mutableStateOf("Coffee") }
+
+    var shouldShowInputCardBottomSheet by remember { mutableStateOf(false) }
 
     // Sticky chip filter
     val showStickyChips by remember {
@@ -81,7 +87,7 @@ fun HomeScreenContent(state: HomeUiState) {
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /* TODO: Add new card */ },
+                onClick = { shouldShowInputCardBottomSheet = true },
                 containerColor = MaterialTheme.colorScheme.primary
             ) {
                 Icon(
@@ -168,6 +174,12 @@ fun HomeScreenContent(state: HomeUiState) {
                 }
             }
         }
+    }
+
+    if (shouldShowInputCardBottomSheet) {
+        InputCardBottomSheet(
+            onDismissRequest = { shouldShowInputCardBottomSheet = false }
+        )
     }
 }
 

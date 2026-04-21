@@ -14,6 +14,7 @@ import app.isfa.kart.db.api.CardType
 import app.isfa.kart.db.api.SubscriptionType
 import app.isfa.kart.db.api.source.membership.CreateKartMembershipModel
 import app.isfa.kart.db.api.source.subscription.CreateKartSubscriptionModel
+import com.isfa.kart.design.KartGallery
 import com.isfa.kart.home.di.HomeViewModelFactory
 import com.isfa.kart.navigation.LocalNavigator
 import com.isfa.kart.navigation.Navigation
@@ -23,26 +24,28 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel(factory = HomeViewModelFacto
     val navigator = LocalNavigator.current
     val data by viewModel.data.collectAsStateWithLifecycle()
 
-    Box(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Text(
-            text = data.toString(),
-            modifier = Modifier
-                .align(Alignment.Center)
-                .clickable {
-                    viewModel.addSubscriptionCard(
-                        CreateKartSubscriptionModel(
-                            brandSlug = "fore",
-                            accountId = "8723467",
-                            cardType = CardType.Barcode,
-                            subscriptionType = SubscriptionType.Monthly
-                        )
-                    )
-                    //navigator.navigateTo(Navigation.Detail)
-                }
-        )
-    }
+    KartGallery()
+
+//    Box(
+//        modifier = Modifier.fillMaxSize()
+//    ) {
+//        Text(
+//            text = data.toString(),
+//            modifier = Modifier
+//                .align(Alignment.Center)
+//                .clickable {
+//                    viewModel.addSubscriptionCard(
+//                        CreateKartSubscriptionModel(
+//                            brandSlug = "fore",
+//                            accountId = "8723467",
+//                            cardType = CardType.Barcode,
+//                            subscriptionType = SubscriptionType.Monthly
+//                        )
+//                    )
+//                    //navigator.navigateTo(Navigation.Detail)
+//                }
+//        )
+//    }
 }
 
 @Composable

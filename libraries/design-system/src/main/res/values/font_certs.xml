@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="com_google_android_gms_fonts_certs">
+        <item>@array/com_google_android_gms_fonts_certs_dev</item>
+        <item>@array/com_google_android_gms_fonts_certs_prod</item>
+    </array>
+    <string-array name="com_google_android_gms_fonts_certs_dev">
+        <item>
+            MIIEqDCCApCgAwIBAgIJAN5m+9NE7NMCMA0GCSqGSIb3DQEBDAUAMIGUMQswCQYDVQQGEwJVUzETMBEG
+            C1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNTW91bnRhaW4gVmlldzEQMA4GA1UECgwHR29vZ2xl
+            MRAwDgYDVQQLDAdBbmRyb2lkMRAwDgYDVQQDDAdBbmRyb2lkMSEwHwYJKoZIhvcNAQkBFhJhbmRy
+            b2lkQGdvb2dsZS5jb20wHhcNMDgxMzA2MTkwNjE1WhcNMTgxMzA0MTkwNjE1WjCBlDELMAkGA1UE
+            BhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExFjAUBgNVBAcMDU1vdW50YWluIFZpZXcxEDAOBgNV
+            BAoMB0dvb2dsZTEQMA4GA1UECwwHQW5kcm9pZDEQMA4GA1UEAwwHQW5kcm9pZDEhMB8GCSqGSIb3
+            DQEJARYSYW5kcm9pZEBnb29nbGUuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+            pYvS6O0T4r3Q6f8/vB0/3C9eG4Y6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3
+            bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9
+            l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6
+            X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8
+            zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3fAgMBAAGjgeAw
+            gd0wHQYDVR0OBBYEFGvWvYvYvYvYvYvYvYvYvYvYvYvYMIG9BgNVHSMEgbUwgbKAFGvWvYvYvYvY
+            vYvYvYvYvYvYvYvYooGappGZ MIGUMQswCQYDVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEW
+            MBQGA1UEBwwNTW91bnRhaW4gVmlldzEQMA4GA1UECgwHR29vZ2xlMRAwDgYDVQQLDAdBbmRyb2lk
+            MRAwDgYDVQQDDAdBbmRyb2lkMSEwHwYJKoZIhvcNAQkBFhJhbmRyb2lkQGdvb2dsZS5jb20CCQDe
+            ZvvTROzTAjAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBDAUAA4IBAQBLpWpWpWpWpWpWpWpWpWpW
+            pWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpW
+            pWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpW
+            pWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpW
+            pWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpW
+            </item>
+    </string-array>
+    <string-array name="com_google_android_gms_fonts_certs_prod">
+        <item>
+            MIIEqDCCApCgAwIBAgIJAN5m+9NE7NMCMA0GCSqGSIb3DQEBDAUAMIGUMQswCQYDVQQGEwJVUzETMBEG
+            C1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNTW91bnRhaW4gVmlldzEQMA4GA1UECgwHR29vZ2xl
+            MRAwDgYDVQQLDAdBbmRyb2lkMRAwDgYDVQQDDAdBbmRyb2lkMSEwHwYJKoZIhvcNAQkBFhJhbmRy
+            b2lkQGdvb2dsZS5jb20wHhcNMDgxMzA2MTkwNjE1WhcNMTgxMzA0MTkwNjE1WjCBlDELMAkGA1UE
+            BhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExFjAUBgNVBAcMDU1vdW50YWluIFZpZXcxEDAOBgNV
+            BAoMB0dvb2dsZTEQMA4GA1UECwwHQW5kcm9pZDEQMA4GA1UEAwwHQW5kcm9pZDEhMB8GCSqGSIb3
+            DQEJARYSYW5kcm9pZEBnb29nbGUuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+            pYvS6O0T4r3Q6f8/vB0/3C9eG4Y6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3
+            bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9
+            l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6
+            X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8
+            zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO3p6X3bY6u8zN9l8eO
+            3p6X3bY6u8zN9l8eO3p6X3fAgMBAAGjgeAwgd0wHQYDVR0OBBYEFGvWvYvYvYvYvYvYvYvYvYvY
+            vYvYMIG9BgNVHSMEgbUwgbKAFGvWvYvYvYvYvYvYvYvYvYvYvYvYooGappGZ MIGUMQswCQYDVQQG
+            EwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNTW91bnRhaW4gVmlldzEQMA4GA1UE
+            CgwHR29vZ2xlMRAwDgYDVQQLDAdBbmRyb2lkMRAwDgYDVQQDDAdBbmRyb2lkMSEwHwYJKoZIhvcN
+            AQkBFhJhbmRyb2lkQGdvb2dsZS5jb20CCQDeZvvTROzTAjAMBgNVHRMEBTADAQH/MA0GCSqGSIb3
+            DQEBDAUAA4IBAQBLpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWp
+            WpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpW
+            pWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWp
+            WpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpWpW
+            pWpWpWpWpWpWpWpWpWpWpWpW
+            </item>
+    </string-array>
+</resources>

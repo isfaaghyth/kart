@@ -61,7 +61,8 @@ fun KartButton(
         shape = Shapes.medium,
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.Transparent,
-            contentColor = MaterialTheme.colorScheme.onPrimary
+            contentColor = MaterialTheme.colorScheme.onPrimary,
+            disabledContainerColor = MaterialTheme.colorScheme.outline
         ),
         modifier = modifier
             .fillMaxWidth()

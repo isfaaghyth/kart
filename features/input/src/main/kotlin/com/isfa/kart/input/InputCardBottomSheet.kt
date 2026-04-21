@@ -42,10 +42,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
+import app.isfa.kart.db.api.CardType
+import app.isfa.kart.db.api.MerchantCategory
+import app.isfa.kart.db.api.SubscriptionType
+import app.isfa.kart.db.api.source.brand.KartBrandModel
 import com.isfa.kart.design.KartActionChip
 import com.isfa.kart.design.KartButton
 import com.isfa.kart.design.KartTextField
 import com.isfa.kart.design.KartTheme
+import com.isfa.kart.input.di.InputCardViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -54,8 +61,11 @@ import java.util.Locale
 @Composable
 fun InputCardBottomSheet(
     onDismissRequest: () -> Unit,
-    sheetState: SheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    sheetState: SheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
+    viewModel: InputCardViewModel = viewModel(factory = InputCardViewModelFactory)
 ) {
+    val brandList by viewModel.brandList.collectAsStateWithLifecycle()
+
     ModalBottomSheet(
         onDismissRequest = onDismissRequest,
         sheetState = sheetState,
@@ -73,21 +83,29 @@ fun InputCardBottomSheet(
             )
         }
     ) {
-        InputCardScreen(onDismissRequest = onDismissRequest)
+        InputCardScreen(
+            onDismissRequest = onDismissRequest,
+            brandList = brandList,
+            onSaveClick = { viewModel.sendEvent(it) }
+        )
     }
 }
 
 @OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun InputCardScreen(
-    onDismissRequest: () -> Unit = {}
+    onDismissRequest: () -> Unit = {},
+    brandList: List<KartBrandModel>,
+    onSaveClick: (InputCardAction) -> Unit = {}
 ) {
+
     val scrollState = rememberScrollState()
 
     var merchantName by remember { mutableStateOf("") }
-    var selectedCategory by remember { mutableStateOf("Coffee") }
+    var merchantSlug by remember { mutableStateOf("") }
     var cardNumber by remember { mutableStateOf("") }
     var cardType by remember { mutableStateOf("Member") } // Member or Subscription
+    var expandedMerchantList by remember { mutableStateOf(false) }
     var expandedSubscription by remember { mutableStateOf(false) }
     var subscriptionType by remember { mutableStateOf("Monthly") }
 
@@ -97,7 +115,14 @@ fun InputCardScreen(
 
     val dateFormatter = remember { SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()) }
 
-    val categories = listOf("Coffee", "Groceries", "Retail", "Pharmacy")
+    val filteredBrands = remember(merchantName, brandList) {
+        if (merchantName.isEmpty()) {
+            brandList
+        } else {
+            brandList.filter { it.name.contains(merchantName, ignoreCase = true) }
+        }
+    }
+
     val subscriptionOptions = listOf("Daily", "Weekly", "Monthly", "Annual")
 
     if (showDatePicker) {
@@ -136,7 +161,7 @@ fun InputCardScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = "Add a new Card",
+                text = "Add a new Kart",
                 style = MaterialTheme.typography.headlineSmall.copy(
                     fontWeight = FontWeight.Bold
                 ),
@@ -147,42 +172,53 @@ fun InputCardScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         // Brand / Merchant Name
-        KartTextField(
-            value = merchantName,
-            onValueChange = { merchantName = it },
-            label = "Brand / Merchant Name".uppercase(),
-            placeholder = "e.g. Starbucks",
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // Category Chips
-        Text(
-            text = "Category".uppercase(),
-            style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(bottom = 8.dp)
-        )
-        FlowRow(
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier.fillMaxWidth()
+        ExposedDropdownMenuBox(
+            expanded = expandedMerchantList,
+            onExpandedChange = { expandedMerchantList = it }
         ) {
-            categories.forEach { category ->
-                KartActionChip(
-                    label = category,
-                    selected = selectedCategory == category,
-                    onClick = { selectedCategory = category }
-                )
-            }
-            KartActionChip(
-                label = "More",
-                onClick = {},
-                leadingIcon = Icons.Default.Add
+            KartTextField(
+                value = merchantName,
+                onValueChange = {
+                    merchantName = it
+                    merchantSlug = "" // Clear slug if user is typing manually
+                    expandedMerchantList = it.isNotEmpty()
+                },
+                label = "Brand Name".uppercase(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .menuAnchor(),
+                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedMerchantList) }
             )
-        }
 
+            if (expandedMerchantList && filteredBrands.isNotEmpty()) {
+                ExposedDropdownMenu(
+                    expanded = expandedMerchantList,
+                    onDismissRequest = { expandedMerchantList = false }
+                ) {
+                    filteredBrands.forEach { option ->
+                        DropdownMenuItem(
+                            text = {
+                                Column {
+                                    Text(text = option.name, style = MaterialTheme.typography.bodyLarge)
+                                    Text(
+                                        text = option.category.merchantName,
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = MaterialTheme.colorScheme.outline
+                                    )
+                                }
+                            },
+                            onClick = {
+                                merchantName = option.name
+                                merchantSlug = option.slug
+                                expandedMerchantList = false
+                            },
+                            contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
+                        )
+                    }
+                }
+            }
+        }
+12
         Spacer(modifier = Modifier.height(16.dp))
 
         // Card Number / ID
@@ -291,9 +327,35 @@ fun InputCardScreen(
         Spacer(modifier = Modifier.height(32.dp))
 
         KartButton(
-            text = "Save Card",
-            onClick = { onDismissRequest() },
-            modifier = Modifier.fillMaxWidth()
+            text = "Save $cardType",
+            onClick = {
+                val action = if (cardType == "Member") {
+                    InputCardAction.AddMemberCard(
+                        brandSlug = merchantSlug,
+                        accountId = cardNumber,
+                        cardType = CardType.Barcode // Defaulting to Barcode for now
+                    )
+                } else {
+                    val subType = when (subscriptionType) {
+                        "Daily" -> SubscriptionType.Daily
+                        "Weekly" -> SubscriptionType.Weekly
+                        "Monthly" -> SubscriptionType.Monthly
+                        "Annual" -> SubscriptionType.Annual
+                        else -> SubscriptionType.None
+                    }
+                    InputCardAction.AddSubscriptionCard(
+                        brandSlug = merchantSlug,
+                        accountId = cardNumber,
+                        cardType = CardType.Numeric, // Defaulting to Numeric for subscription
+                        subscriptionType = subType,
+                        expirationDate = expirationDate ?: 0L
+                    )
+                }
+                onSaveClick(action)
+                onDismissRequest()
+            },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = merchantSlug.isNotEmpty() && cardNumber.isNotEmpty()
         )
     }
 }
@@ -302,6 +364,9 @@ fun InputCardScreen(
 @Composable
 fun InputCardScreenPreview() {
     KartTheme {
-        InputCardScreen()
+        InputCardScreen(
+            onDismissRequest = {},
+            brandList = emptyList()
+        )
     }
 }

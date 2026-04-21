@@ -9,7 +9,6 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import com.isfa.kart.detail.DetailCardScreen
 import com.isfa.kart.home.HomeScreen
-import com.isfa.kart.input.InputCardScreen
 import com.isfa.kart.navigation.KartNavigator
 import com.isfa.kart.navigation.LocalNavigator
 import com.isfa.kart.navigation.Navigation
@@ -26,7 +25,6 @@ fun AppHost() {
             entryProvider = entryProvider {
                 entry<Navigation.Home> { HomeScreen() }
                 entry<Navigation.Detail> { DetailCardScreen(it.cardId) }
-                entry<Navigation.Input> { InputCardScreen() }
             }
         )
     }

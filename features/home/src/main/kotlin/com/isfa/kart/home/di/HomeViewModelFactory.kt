@@ -7,18 +7,19 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import app.isfa.kart.repository.api.KartAddCardRepository
 import app.isfa.kart.repository.api.KartCardRepository
 import app.isfa.kart.repository.api.KartSearchCardRepository
+import app.isfa.kart.repository.api.RepositoryDependencies
 import com.isfa.kart.home.HomeViewModel
 
 val HomeViewModelFactory: ViewModelProvider.Factory = viewModelFactory {
     initializer {
         val kartFetchCardRepository =
-            (this[APPLICATION_KEY] as HomeDependencies).kartFetchCardRepository()
+            (this[APPLICATION_KEY] as RepositoryDependencies).kartFetchCardRepository()
         val kartSearchCardRepository =
-            (this[APPLICATION_KEY] as HomeDependencies).kartSearchCardRepository()
+            (this[APPLICATION_KEY] as RepositoryDependencies).kartSearchCardRepository()
         val kartAddCardRepository =
-            (this[APPLICATION_KEY] as HomeDependencies).kartAddCardRepository()
+            (this[APPLICATION_KEY] as RepositoryDependencies).kartAddCardRepository()
         val kartBrandInfoRepository =
-            (this[APPLICATION_KEY] as HomeDependencies).kartBrandInfoRepository()
+            (this[APPLICATION_KEY] as RepositoryDependencies).kartBrandInfoRepository()
 
         HomeViewModel(
             kartFetchCardRepository = kartFetchCardRepository,

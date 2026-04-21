@@ -5,9 +5,9 @@ import app.isfa.kart.repository.api.KartAddCardRepository
 import app.isfa.kart.repository.api.KartBrandInfoRepository
 import app.isfa.kart.repository.api.KartCardRepository
 import app.isfa.kart.repository.api.KartSearchCardRepository
-import com.isfa.kart.home.di.HomeDependencies
+import app.isfa.kart.repository.api.RepositoryDependencies
 
-class KartApp : Application(), HomeDependencies {
+class KartApp : Application(), RepositoryDependencies {
 
     private val di by lazy { DIModuleManager(applicationContext) }
 

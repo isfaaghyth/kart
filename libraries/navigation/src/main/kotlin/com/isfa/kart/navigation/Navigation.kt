@@ -11,7 +11,4 @@ sealed interface Navigation : NavKey {
 
     @Serializable
     data class Detail(val cardId: Int) : Navigation
-
-    @Serializable
-    data object Input : Navigation
 }

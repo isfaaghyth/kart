@@ -11,5 +11,7 @@ interface KartBrandInfoDataSource {
 
     suspend fun findBySlug(slug: String): KartBrandModel?
 
+    suspend fun upsert(brand: KartBrandModel)
+
     suspend fun upsertAll(brands: List<KartBrandModel>)
 }

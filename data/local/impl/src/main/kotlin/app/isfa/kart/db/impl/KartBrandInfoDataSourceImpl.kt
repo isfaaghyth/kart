@@ -22,6 +22,10 @@ class KartBrandInfoDataSourceImpl(private val dao: KartBrandInfoDao) : KartBrand
         return dao.findBySlug(slug)?.toModel()
     }
 
+    override suspend fun upsert(brand: KartBrandModel) {
+        dao.upsert(brand.toEntity())
+    }
+
     override suspend fun upsertAll(brands: List<KartBrandModel>) {
         dao.upsertAll(brands.map { it.toEntity() })
     }

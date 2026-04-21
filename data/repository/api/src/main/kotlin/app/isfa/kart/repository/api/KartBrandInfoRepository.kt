@@ -4,5 +4,7 @@ import app.isfa.kart.db.api.source.brand.KartBrandModel
 
 interface KartBrandInfoRepository {
 
-    suspend fun addAll(brands: List<KartBrandModel>)
+    suspend fun prefetch()
+
+    suspend fun insert(model: KartBrandModel)
 }

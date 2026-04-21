@@ -16,6 +16,7 @@ dependencies {
     implementation(project(":data:repository:api"))
     implementation(project(":data:local:impl"))
     implementation(libs.kotlinx.coroutines)
+    implementation(libs.kotlinx.serialization.json)
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)

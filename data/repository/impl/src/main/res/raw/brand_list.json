@@ -1,0 +1,117 @@
+[
+  { "slug": "starbucks", "name": "Starbucks", "type": "Membership", "category": "Coffee", "favicon": "https://favicon.im/starbucks.com", "url": "https://www.starbucks.com", "colors": "#00704A,#1E3932" },
+  { "slug": "kopi-kenangan", "name": "Kopi Kenangan", "type": "Membership", "category": "Coffee", "favicon": "https://favicon.im/kopikenangan.com", "url": "https://www.kopikenangan.com", "colors": "#C8932A,#7B4F2E" },
+  { "slug": "fore-coffee", "name": "Fore Coffee", "type": "Membership", "category": "Coffee", "favicon": "https://favicon.im/fore.coffee", "url": "https://fore.coffee", "colors": "#2D6A4F,#1B4332" },
+  { "slug": "janji-jiwa", "name": "Janji Jiwa", "type": "Membership", "category": "Coffee", "favicon": "https://favicon.im/jiwagroup.com", "url": "https://www.jiwagroup.com", "colors": "#1A1A1A,#C8A96E" },
+  { "slug": "dunkin", "name": "Dunkin'", "type": "Membership", "category": "Coffee", "favicon": "https://favicon.im/dunkindonuts.com", "url": "https://www.dunkindonuts.com", "colors": "#FF6E00,#DC1C7B" },
+
+  { "slug": "indomaret", "name": "Indomaret", "type": "Membership", "category": "Groceries", "favicon": "https://favicon.im/indomaret.co.id", "url": "https://www.indomaret.co.id", "colors": "#E31837,#003087" },
+  { "slug": "alfamart", "name": "Alfamart", "type": "Membership", "category": "Groceries", "favicon": "https://favicon.im/alfamart.co.id", "url": "https://www.alfamart.co.id", "colors": "#E31837,#003087" },
+  { "slug": "giant", "name": "Giant", "type": "Membership", "category": "Groceries", "favicon": "https://favicon.im/giant.co.id", "url": "https://www.giant.co.id", "colors": "#E31837,#F8971D" },
+  { "slug": "superindo", "name": "Super Indo", "type": "Membership", "category": "Groceries", "favicon": "https://favicon.im/superindo.co.id", "url": "https://www.superindo.co.id", "colors": "#E31837,#F8971D" },
+  { "slug": "ranch-market", "name": "Ranch Market", "type": "Membership", "category": "Groceries", "favicon": "https://favicon.im/ranchmarket.co.id", "url": "https://www.ranchmarket.co.id", "colors": "#006838,#8DC63F" },
+
+  { "slug": "uniqlo", "name": "UNIQLO", "type": "Membership", "category": "Clothing", "favicon": "https://favicon.im/uniqlo.com", "url": "https://www.uniqlo.com", "colors": "#E60012,#000000" },
+  { "slug": "zara", "name": "Zara", "type": "Membership", "category": "Clothing", "favicon": "https://favicon.im/zara.com", "url": "https://www.zara.com", "colors": "#000000,#333333" },
+  { "slug": "hm", "name": "H&M", "type": "Membership", "category": "Clothing", "favicon": "https://favicon.im/hm.com", "url": "https://www.hm.com", "colors": "#E50010,#222222" },
+  { "slug": "nike", "name": "Nike", "type": "Membership", "category": "Shoes", "favicon": "https://favicon.im/nike.com", "url": "https://www.nike.com", "colors": "#111111,#FA5400" },
+  { "slug": "adidas", "name": "Adidas", "type": "Membership", "category": "Shoes", "favicon": "https://favicon.im/adidas.com", "url": "https://www.adidas.com", "colors": "#000000,#FFFFFF" },
+
+  { "slug": "planet-fitness", "name": "Planet Fitness", "type": "Membership", "category": "Fitness", "favicon": "https://favicon.im/planetfitness.com", "url": "https://www.planetfitness.com", "colors": "#762D95,#FFD700" },
+  { "slug": "fitness-first", "name": "Fitness First", "type": "Membership", "category": "Fitness", "favicon": "https://favicon.im/fitnessfirst.com", "url": "https://www.fitnessfirst.com", "colors": "#E31837,#000000" },
+  { "slug": "celebrity-fitness", "name": "Celebrity Fitness", "type": "Membership", "category": "Fitness", "favicon": "https://favicon.im/celebrityfitness.co.id", "url": "https://www.celebrityfitness.co.id", "colors": "#F7941D,#000000" },
+
+  { "slug": "sephora", "name": "Sephora", "type": "Membership", "category": "Beauty", "favicon": "https://favicon.im/sephora.com", "url": "https://www.sephora.com", "colors": "#000000,#CC0000" },
+  { "slug": "guardian", "name": "Guardian", "type": "Membership", "category": "Beauty", "favicon": "https://favicon.im/guardian.co.id", "url": "https://www.guardian.co.id", "colors": "#E31837,#FFFFFF" },
+  { "slug": "watsons", "name": "Watsons", "type": "Membership", "category": "Beauty", "favicon": "https://favicon.im/watsons.co.id", "url": "https://www.watsons.co.id", "colors": "#009FE3,#FFFFFF" },
+
+  { "slug": "mcdonalds", "name": "McDonald's", "type": "Membership", "category": "FastFood", "favicon": "https://favicon.im/mcdonalds.com", "url": "https://www.mcdonalds.com", "colors": "#FF0000,#FFC72C" },
+  { "slug": "kfc", "name": "KFC", "type": "Membership", "category": "FastFood", "favicon": "https://favicon.im/kfc.com", "url": "https://www.kfc.com", "colors": "#E4002B,#F40027" },
+  { "slug": "burger-king", "name": "Burger King", "type": "Membership", "category": "FastFood", "favicon": "https://favicon.im/burgerking.com", "url": "https://www.burgerking.com", "colors": "#D62300,#F5EBDC" },
+  { "slug": "pizza-hut", "name": "Pizza Hut", "type": "Membership", "category": "Restaurant", "favicon": "https://favicon.im/pizzahut.com", "url": "https://www.pizzahut.com", "colors": "#EE1A24,#1F1F1F" },
+  { "slug": "dominos", "name": "Domino's", "type": "Membership", "category": "Restaurant", "favicon": "https://favicon.im/dominos.com", "url": "https://www.dominos.com", "colors": "#006491,#E31837" },
+
+  { "slug": "gofood", "name": "GoFood", "type": "Membership", "category": "FoodDelivery", "favicon": "https://favicon.im/gojek.com", "url": "https://www.gojek.com/gofood", "colors": "#00AA13,#FFFFFF" },
+  { "slug": "grabfood", "name": "GrabFood", "type": "Membership", "category": "FoodDelivery", "favicon": "https://favicon.im/grab.com", "url": "https://food.grab.com", "colors": "#00B14F,#FFFFFF" },
+  { "slug": "shopeefood", "name": "ShopeeFood", "type": "Membership", "category": "FoodDelivery", "favicon": "https://favicon.im/shopee.co.id", "url": "https://shopee.co.id", "colors": "#EE4D2D,#FF7337" },
+
+  { "slug": "netflix", "name": "Netflix", "type": "Subscription", "category": "Streaming", "favicon": "https://favicon.im/netflix.com", "url": "https://www.netflix.com", "colors": "#E50914,#221F1F" },
+  { "slug": "disney-plus", "name": "Disney+", "type": "Subscription", "category": "Streaming", "favicon": "https://favicon.im/disneyplus.com", "url": "https://www.disneyplus.com", "colors": "#113CCF,#0063E5" },
+  { "slug": "spotify", "name": "Spotify", "type": "Subscription", "category": "Music", "favicon": "https://favicon.im/spotify.com", "url": "https://www.spotify.com", "colors": "#1DB954,#191414" },
+  { "slug": "youtube-premium", "name": "YouTube Premium", "type": "Subscription", "category": "Streaming", "favicon": "https://favicon.im/youtube.com", "url": "https://www.youtube.com/premium", "colors": "#FF0000,#282828" },
+  { "slug": "apple-tv", "name": "Apple TV+", "type": "Subscription", "category": "Streaming", "favicon": "https://favicon.im/apple.com", "url": "https://tv.apple.com", "colors": "#000000,#555555" },
+  { "slug": "vidio", "name": "Vidio", "type": "Subscription", "category": "Streaming", "favicon": "https://favicon.im/vidio.com", "url": "https://www.vidio.com", "colors": "#1A56DB,#FFFFFF" },
+
+  { "slug": "steam", "name": "Steam", "type": "Membership", "category": "Gaming", "favicon": "https://favicon.im/steampowered.com", "url": "https://store.steampowered.com", "colors": "#1B2838,#2A475E" },
+  { "slug": "playstation", "name": "PlayStation", "type": "Subscription", "category": "Gaming", "favicon": "https://favicon.im/playstation.com", "url": "https://www.playstation.com", "colors": "#003791,#00439C" },
+  { "slug": "xbox", "name": "Xbox Game Pass", "type": "Subscription", "category": "Gaming", "favicon": "https://favicon.im/xbox.com", "url": "https://www.xbox.com", "colors": "#107C10,#052A05" },
+
+  { "slug": "aws", "name": "Amazon Web Services", "type": "Subscription", "category": "Cloud", "favicon": "https://favicon.im/aws.amazon.com", "url": "https://aws.amazon.com", "colors": "#FF9900,#232F3E" },
+  { "slug": "google-cloud", "name": "Google Cloud", "type": "Subscription", "category": "Cloud", "favicon": "https://favicon.im/cloud.google.com", "url": "https://cloud.google.com", "colors": "#4285F4,#34A853" },
+  { "slug": "microsoft-azure", "name": "Microsoft Azure", "type": "Subscription", "category": "Cloud", "favicon": "https://favicon.im/azure.microsoft.com", "url": "https://azure.microsoft.com", "colors": "#0078D4,#005A9E" },
+  { "slug": "digitalocean", "name": "DigitalOcean", "type": "Subscription", "category": "Cloud", "favicon": "https://favicon.im/digitalocean.com", "url": "https://www.digitalocean.com", "colors": "#0080FF,#003181" },
+
+  { "slug": "gojek", "name": "Gojek", "type": "Membership", "category": "Transportation", "favicon": "https://favicon.im/gojek.com", "url": "https://www.gojek.com", "colors": "#00AA13,#FFFFFF" },
+  { "slug": "grab", "name": "Grab", "type": "Membership", "category": "Transportation", "favicon": "https://favicon.im/grab.com", "url": "https://www.grab.com", "colors": "#00B14F,#FFFFFF" },
+  { "slug": "uber", "name": "Uber", "type": "Membership", "category": "Transportation", "favicon": "https://favicon.im/uber.com", "url": "https://www.uber.com", "colors": "#000000,#333333" },
+  { "slug": "indriver", "name": "inDriver", "type": "Membership", "category": "Transportation", "favicon": "https://favicon.im/indriver.com", "url": "https://indriver.com", "colors": "#CCFF00,#1A1A1A" },
+
+  { "slug": "garuda-indonesia", "name": "Garuda Indonesia", "type": "Membership", "category": "Airlines", "favicon": "https://favicon.im/garuda-indonesia.com", "url": "https://www.garuda-indonesia.com", "colors": "#003DA5,#00A0E3" },
+  { "slug": "lion-air", "name": "Lion Air", "type": "Membership", "category": "Airlines", "favicon": "https://favicon.im/lionair.co.id", "url": "https://www.lionair.co.id", "colors": "#F26522,#FFFFFF" },
+  { "slug": "airasia", "name": "AirAsia", "type": "Membership", "category": "Airlines", "favicon": "https://favicon.im/airasia.com", "url": "https://www.airasia.com", "colors": "#FF0000,#FFFFFF" },
+  { "slug": "singapore-airlines", "name": "Singapore Airlines", "type": "Membership", "category": "Airlines", "favicon": "https://favicon.im/singaporeair.com", "url": "https://www.singaporeair.com", "colors": "#0F276D,#FFD700" },
+
+  { "slug": "marriott", "name": "Marriott", "type": "Membership", "category": "Hotel", "favicon": "https://favicon.im/marriott.com", "url": "https://www.marriott.com", "colors": "#8B0000,#CC0000" },
+  { "slug": "hilton", "name": "Hilton", "type": "Membership", "category": "Hotel", "favicon": "https://favicon.im/hilton.com", "url": "https://www.hilton.com", "colors": "#104C97,#1C6FC9" },
+  { "slug": "accor", "name": "Accor", "type": "Membership", "category": "Hotel", "favicon": "https://favicon.im/accor.com", "url": "https://www.accor.com", "colors": "#C6973F,#1A1A1A" },
+  { "slug": "aston", "name": "Aston Hotels", "type": "Membership", "category": "Hotel", "favicon": "https://favicon.im/astonhotelsinternational.com", "url": "https://www.astonhotelsinternational.com", "colors": "#8B0000,#D4AF37" },
+
+  { "slug": "apple", "name": "Apple", "type": "Membership", "category": "Electronics", "favicon": "https://favicon.im/apple.com", "url": "https://www.apple.com", "colors": "#555555,#000000" },
+  { "slug": "samsung", "name": "Samsung", "type": "Membership", "category": "Electronics", "favicon": "https://favicon.im/samsung.com", "url": "https://www.samsung.com", "colors": "#1428A0,#000000" },
+  { "slug": "ibox", "name": "iBox", "type": "Membership", "category": "Electronics", "favicon": "https://favicon.im/ibox.co.id", "url": "https://www.ibox.co.id", "colors": "#000000,#555555" },
+
+  { "slug": "amazon", "name": "Amazon", "type": "Membership", "category": "OnlineShopping", "favicon": "https://favicon.im/amazon.com", "url": "https://www.amazon.com", "colors": "#FF9900,#232F3E" },
+  { "slug": "shopee", "name": "Shopee", "type": "Membership", "category": "OnlineShopping", "favicon": "https://favicon.im/shopee.co.id", "url": "https://shopee.co.id", "colors": "#EE4D2D,#FF7337" },
+  { "slug": "lazada", "name": "Lazada", "type": "Membership", "category": "OnlineShopping", "favicon": "https://favicon.im/lazada.co.id", "url": "https://www.lazada.co.id", "colors": "#0F146D,#FF6600" },
+
+  { "slug": "pertamina", "name": "Pertamina", "type": "Membership", "category": "Gas", "favicon": "https://favicon.im/pertamina.com", "url": "https://www.pertamina.com", "colors": "#E31837,#009A44" },
+  { "slug": "shell", "name": "Shell", "type": "Membership", "category": "Gas", "favicon": "https://favicon.im/shell.com", "url": "https://www.shell.com", "colors": "#DD1D21,#FFC600" },
+
+  { "slug": "guardian-pharmacy", "name": "Guardian Pharmacy", "type": "Membership", "category": "Pharmacy", "favicon": "https://favicon.im/guardian.co.id", "url": "https://www.guardian.co.id", "colors": "#E31837,#FFFFFF" },
+  { "slug": "kimia-farma", "name": "Kimia Farma", "type": "Membership", "category": "Pharmacy", "favicon": "https://favicon.im/kimiafarma.co.id", "url": "https://www.kimiafarma.co.id", "colors": "#009A44,#FFFFFF" },
+  { "slug": "k24klik", "name": "K24Klik", "type": "Membership", "category": "Pharmacy", "favicon": "https://favicon.im/k24klik.com", "url": "https://www.k24klik.com", "colors": "#E31837,#FF6600" },
+
+  { "slug": "cgv", "name": "CGV Cinemas", "type": "Membership", "category": "Entertainment", "favicon": "https://favicon.im/cgv.id", "url": "https://www.cgv.id", "colors": "#E31837,#000000" },
+  { "slug": "cinepolis", "name": "Cinépolis", "type": "Membership", "category": "Entertainment", "favicon": "https://favicon.im/cinepolis.com", "url": "https://www.cinepolis.com", "colors": "#E31837,#1A1A1A" },
+  { "slug": "xxi", "name": "Cinema XXI", "type": "Membership", "category": "Entertainment", "favicon": "https://favicon.im/cinematwentyone.com", "url": "https://www.cinematwentyone.com", "colors": "#000000,#FFD700" },
+
+  { "slug": "ikea", "name": "IKEA", "type": "Membership", "category": "Furniture", "favicon": "https://favicon.im/ikea.com", "url": "https://www.ikea.com", "colors": "#003399,#FFCC00" },
+  { "slug": "ace-hardware", "name": "ACE Hardware", "type": "Membership", "category": "Hardware", "favicon": "https://favicon.im/acehardware.com", "url": "https://www.acehardware.co.id", "colors": "#E31837,#000000" },
+
+  { "slug": "bca", "name": "BCA", "type": "Membership", "category": "Banking", "favicon": "https://favicon.im/bca.co.id", "url": "https://www.bca.co.id", "colors": "#003087,#009FDB" },
+  { "slug": "mandiri", "name": "Bank Mandiri", "type": "Membership", "category": "Banking", "favicon": "https://favicon.im/bankmandiri.co.id", "url": "https://www.bankmandiri.co.id", "colors": "#003087,#F7941D" },
+  { "slug": "bri", "name": "BRI", "type": "Membership", "category": "Banking", "favicon": "https://favicon.im/bri.co.id", "url": "https://www.bri.co.id", "colors": "#003087,#009FDB" },
+  { "slug": "bni", "name": "BNI", "type": "Membership", "category": "Banking", "favicon": "https://favicon.im/bni.co.id", "url": "https://www.bni.co.id", "colors": "#FF6600,#003087" },
+
+  { "slug": "bibit", "name": "Bibit", "type": "Membership", "category": "Investment", "favicon": "https://favicon.im/bibit.id", "url": "https://www.bibit.id", "colors": "#00C897,#005C4B" },
+  { "slug": "bareksa", "name": "Bareksa", "type": "Membership", "category": "Investment", "favicon": "https://favicon.im/bareksa.com", "url": "https://www.bareksa.com", "colors": "#003087,#00A651" },
+
+  { "slug": "pln", "name": "PLN", "type": "Membership", "category": "Utilities", "favicon": "https://favicon.im/pln.co.id", "url": "https://www.pln.co.id", "colors": "#003087,#F7941D" },
+  { "slug": "pdam", "name": "PDAM", "type": "Membership", "category": "Utilities", "favicon": "https://favicon.im/pdam.co.id", "url": "https://www.pdam.id", "colors": "#009FDB,#003087" },
+
+  { "slug": "indihome", "name": "IndiHome", "type": "Subscription", "category": "Utilities", "favicon": "https://favicon.im/indihome.co.id", "url": "https://indihome.co.id", "colors": "#E31837,#FF6600" },
+  { "slug": "firstmedia", "name": "First Media", "type": "Subscription", "category": "Utilities", "favicon": "https://favicon.im/firstmedia.com", "url": "https://www.firstmedia.com", "colors": "#E31837,#003087" },
+
+  { "slug": "halodoc", "name": "Halodoc", "type": "Membership", "category": "Healthcare", "favicon": "https://favicon.im/halodoc.com", "url": "https://www.halodoc.com", "colors": "#2ECC71,#1A9952" },
+  { "slug": "alodokter", "name": "Alodokter", "type": "Membership", "category": "Healthcare", "favicon": "https://favicon.im/alodokter.com", "url": "https://www.alodokter.com", "colors": "#00BCD4,#0097A7" },
+
+  { "slug": "coursera", "name": "Coursera", "type": "Subscription", "category": "Education", "favicon": "https://favicon.im/coursera.org", "url": "https://www.coursera.org", "colors": "#0056D2,#0747A6" },
+  { "slug": "udemy", "name": "Udemy", "type": "Subscription", "category": "Education", "favicon": "https://favicon.im/udemy.com", "url": "https://www.udemy.com", "colors": "#A435F0,#6A0DAD" },
+  { "slug": "ruangguru", "name": "Ruangguru", "type": "Subscription", "category": "Education", "favicon": "https://favicon.im/ruangguru.com", "url": "https://www.ruangguru.com", "colors": "#00C800,#005C00" },
+
+  { "slug": "microsoft-365", "name": "Microsoft 365", "type": "Subscription", "category": "Subscription", "favicon": "https://favicon.im/microsoft.com", "url": "https://www.microsoft365.com", "colors": "#D83B01,#0078D4" },
+  { "slug": "adobe-creative", "name": "Adobe Creative Cloud", "type": "Subscription", "category": "Subscription", "favicon": "https://favicon.im/adobe.com", "url": "https://www.adobe.com/creativecloud", "colors": "#FF0000,#CC0000" },
+  { "slug": "notion", "name": "Notion", "type": "Subscription", "category": "Subscription", "favicon": "https://favicon.im/notion.so", "url": "https://www.notion.so", "colors": "#000000,#333333" },
+  { "slug": "slack", "name": "Slack", "type": "Subscription", "category": "Subscription", "favicon": "https://favicon.im/slack.com", "url": "https://www.slack.com", "colors": "#4A154B,#E01E5A" },
+  { "slug": "github", "name": "GitHub", "type": "Subscription", "category": "Subscription", "favicon": "https://favicon.im/github.com", "url": "https://www.github.com", "colors": "#24292E,#4078C0" }
+]

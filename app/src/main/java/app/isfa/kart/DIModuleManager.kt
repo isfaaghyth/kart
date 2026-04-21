@@ -2,6 +2,7 @@ package app.isfa.kart
 
 import android.content.Context
 import app.isfa.kart.db.DataModule
+import app.isfa.kart.repository.JsonAssetReaderImpl
 import app.isfa.kart.repository.RepositoryModule
 import app.isfa.kart.repository.api.KartAddCardRepository
 import app.isfa.kart.repository.api.KartBrandInfoRepository
@@ -34,6 +35,7 @@ class DIModuleManager(context: Context) {
     // Brand Info
     private val brandInfoDao = DataModule.providesKartBrandInfoDao(db)
     private val brandInfoDataSource = DataModule.providesKartBrandInfoDataSource(brandInfoDao)
+    private val assetReader = JsonAssetReaderImpl(context)
 
     fun kartFetchCardRepository(): KartCardRepository {
         return RepositoryModule.providesKartCardRepository(
@@ -57,7 +59,8 @@ class DIModuleManager(context: Context) {
 
     fun kartBrandInfoRepository(): KartBrandInfoRepository {
         return RepositoryModule.providesKartBrandInfoRepository(
-            brandInfoDataSource
+            brandInfoDataSource,
+            assetReader
         )
     }
 }

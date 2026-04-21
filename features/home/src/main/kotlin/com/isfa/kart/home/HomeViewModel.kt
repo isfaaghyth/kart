@@ -35,39 +35,9 @@ class HomeViewModel(
         )
 
     init {
-//        viewModelScope.launch {
-//            kartBrandInfoRepository.addAll(
-//                listOf(
-//                    KartBrandModel(
-//                        slug = "uniqlo",
-//                        name = "UNIQLO",
-//                        type = BrandTypeOf.Membership,
-//                        category = MerchantCategory.Retail,
-//                        faviconUrl = "",
-//                        url = "",
-//                        colors = "",
-//                    ),
-//                    KartBrandModel(
-//                        slug = "h-and-m",
-//                        name = "H&M",
-//                        type = BrandTypeOf.Membership,
-//                        category = MerchantCategory.Retail,
-//                        faviconUrl = "",
-//                        url = "",
-//                        colors = "",
-//                    ),
-//                    KartBrandModel(
-//                        slug = "fore",
-//                        name = "ForeCoffee",
-//                        type = BrandTypeOf.Membership,
-//                        category = MerchantCategory.Coffee,
-//                        faviconUrl = "",
-//                        url = "",
-//                        colors = "",
-//                    )
-//                )
-//            )
-//        }
+        viewModelScope.launch {
+            kartBrandInfoRepository.prefetch()
+        }
     }
 
     fun addMemberCard(model: CreateKartMembershipModel) {

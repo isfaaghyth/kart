@@ -7,6 +7,7 @@ import app.isfa.kart.repository.api.KartAddCardRepository
 import app.isfa.kart.repository.api.KartBrandInfoRepository
 import app.isfa.kart.repository.api.KartCardRepository
 import app.isfa.kart.repository.api.KartSearchCardRepository
+import app.isfa.kart.repository.api.JsonAssetReader
 
 object RepositoryModule {
 
@@ -25,6 +26,7 @@ object RepositoryModule {
     ): KartAddCardRepository = KartAddCardRepositoryImpl(membershipDataSource, subscriptionDataSource)
 
     fun providesKartBrandInfoRepository(
-        brandInfoDataSource: KartBrandInfoDataSource
-    ): KartBrandInfoRepository = KartBrandInfoRepositoryImpl(brandInfoDataSource)
+        brandInfoDataSource: KartBrandInfoDataSource,
+        assetReader: JsonAssetReader
+    ): KartBrandInfoRepository = KartBrandInfoRepositoryImpl(brandInfoDataSource, assetReader)
 }

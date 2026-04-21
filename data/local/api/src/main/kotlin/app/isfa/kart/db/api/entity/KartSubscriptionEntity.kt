@@ -32,4 +32,6 @@ data class KartSubscriptionEntity(
 
     @ColumnInfo(name = "brand_slug")
     val brandSlug: String,
+
+    val expirationDate: Long
 )

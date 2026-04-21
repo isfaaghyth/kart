@@ -43,7 +43,7 @@ abstract class KartDatabase : RoomDatabase() {
 
     companion object {
         internal const val VERSION = 1
-        private const val NAME = "kart_app"
+        private const val NAME = "withkart"
 
         fun create(appContext: Context): KartDatabase {
             return Room.databaseBuilder(appContext, KartDatabase::class.java, NAME)

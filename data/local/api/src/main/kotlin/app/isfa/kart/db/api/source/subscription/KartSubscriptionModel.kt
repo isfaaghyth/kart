@@ -17,4 +17,5 @@ data class CreateKartSubscriptionModel(
     val accountId: String,
     val cardType: CardType,
     val subscriptionType: SubscriptionType,
+    val expirationDate: Long
 )

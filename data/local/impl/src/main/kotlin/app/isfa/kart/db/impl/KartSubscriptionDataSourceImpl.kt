@@ -49,6 +49,7 @@ class KartSubscriptionDataSourceImpl(
                 cardType = model.cardType,
                 subscriptionType = model.subscriptionType,
                 brandSlug = model.brandSlug,
+                expirationDate = model.expirationDate
             )
         )
 
@@ -66,6 +67,7 @@ class KartSubscriptionDataSourceImpl(
                 cardType = model.cardType,
                 subscriptionType = model.subscriptionType,
                 brandSlug = model.brandSlug,
+                expirationDate = model.expirationDate
             )
         )
     }

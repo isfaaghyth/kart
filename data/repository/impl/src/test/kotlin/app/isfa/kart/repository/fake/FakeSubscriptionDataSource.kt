@@ -16,13 +16,15 @@ class FakeSubscriptionDataSource(
     val updatedModels = mutableListOf<CreateKartSubscriptionModel>()
     val deletedIds = mutableListOf<Int>()
 
+    var insertResult: Result<Boolean> = Result.success(true)
+
     fun emit(subs: List<KartSubscriptionModel>) { flow.value = subs }
 
     override fun subscriptions(): Flow<List<KartSubscriptionModel>> = flow
 
     override suspend fun insert(model: CreateKartSubscriptionModel): Result<Boolean> {
         insertedModels += model
-        return Result.success(true)
+        return insertResult
     }
 
     override suspend fun update(model: CreateKartSubscriptionModel) { updatedModels += model }

@@ -192,32 +192,69 @@ class KartCardRepositoryTest {
     }
 
     @Test
-    fun `addMember delegates insert to membership data source`() = runTest {
+    fun `addMember returns success when insertion succeeds`() = runTest {
         val model = CreateKartMembershipModel(
             brandSlug = "uniqlo",
             accountId = "NEW-111",
             cardType = CardType.Barcode,
         )
+        membershipDataSource.insertResult = Result.success(true)
 
-        addRepository.addMember(model)
+        val result = addRepository.addMember(model)
 
-        assertEquals(1, membershipDataSource.insertedModels.size)
-        assertEquals(model, membershipDataSource.insertedModels[0])
+        assertTrue(result.isSuccess)
+        assertEquals(true, result.getOrNull())
     }
 
     @Test
-    fun `addSubscription delegates insert to subscription data source`() = runTest {
+    fun `addMember returns failure when insertion fails`() = runTest {
+        val model = CreateKartMembershipModel(
+            brandSlug = "uniqlo",
+            accountId = "NEW-111",
+            cardType = CardType.Barcode,
+        )
+        val exception = RuntimeException("Database error")
+        membershipDataSource.insertResult = Result.failure(exception)
+
+        val result = addRepository.addMember(model)
+
+        assertTrue(result.isFailure)
+        assertEquals(exception, result.exceptionOrNull())
+    }
+
+    @Test
+    fun `addSubscription returns success when insertion succeeds`() = runTest {
         val model = CreateKartSubscriptionModel(
             brandSlug = "netflix",
             accountId = "NF-NEW",
             cardType = CardType.Numeric,
             subscriptionType = SubscriptionType.Annual,
+            expirationDate = 0
         )
+        subscriptionDataSource.insertResult = Result.success(true)
 
-        addRepository.addSubscription(model)
+        val result = addRepository.addSubscription(model)
 
-        assertEquals(1, subscriptionDataSource.insertedModels.size)
-        assertEquals(model, subscriptionDataSource.insertedModels[0])
+        assertTrue(result.isSuccess)
+        assertEquals(true, result.getOrNull())
+    }
+
+    @Test
+    fun `addSubscription returns failure when insertion fails`() = runTest {
+        val model = CreateKartSubscriptionModel(
+            brandSlug = "netflix",
+            accountId = "NF-NEW",
+            cardType = CardType.Numeric,
+            subscriptionType = SubscriptionType.Annual,
+            expirationDate = 0
+        )
+        val exception = RuntimeException("Database error")
+        subscriptionDataSource.insertResult = Result.failure(exception)
+
+        val result = addRepository.addSubscription(model)
+
+        assertTrue(result.isFailure)
+        assertEquals(exception, result.exceptionOrNull())
     }
 
     @Test

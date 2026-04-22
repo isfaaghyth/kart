@@ -8,8 +8,12 @@ import app.isfa.kart.repository.api.KartCardRepository
 import app.isfa.kart.repository.api.KartSearchCardRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
@@ -26,6 +30,13 @@ class HomeViewModel(
     private val keyword = MutableStateFlow("")
     private val selectedCategory = MutableStateFlow<MerchantCategory?>(null)
 
+    private val _effect = MutableSharedFlow<HomeEffect>(
+        extraBufferCapacity = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST
+    )
+
+    val effect = _effect.asSharedFlow()
+
     val state = combine(keyword, selectedCategory) { k, c -> k to c }
         .flatMapLatest { (k, c) ->
             if (c != null) {
@@ -35,11 +46,14 @@ class HomeViewModel(
             }
         }
         .combine(kartFetchCardRepository.allCards()) { filtered, all ->
-            // Extract unique categories from all cards for the filter chips
             val activeCategories = all.map { it.brand.category }.distinct()
+
             HomeUiState(
+                state = HomeUiState.UiState.Succeed,
                 cards = filtered,
-                categories = activeCategories
+                categories = activeCategories,
+                keywordSearch = keyword.value,
+                selectedCategory = selectedCategory.value
             )
         }
         .flowOn(Dispatchers.Default)
@@ -55,7 +69,17 @@ class HomeViewModel(
         }
     }
 
-    fun updateKeyword(newKeyword: String) {
+    fun onEvent(event: HomeEvent) {
+        when (event) {
+            is HomeEvent.OnKeywordChanged -> updateKeyword(event.keyword)
+            is HomeEvent.OnCategorySelected -> updateCategory(event.category)
+            is HomeEvent.OnCardClicked -> {
+                _effect.tryEmit(HomeEffect.NavigateToCardDetail(event.accountId))
+            }
+        }
+    }
+
+    private fun updateKeyword(newKeyword: String) {
         keyword.value = newKeyword
         // Clear category when searching by keyword to avoid conflicts
         if (newKeyword.isNotEmpty()) {
@@ -63,7 +87,7 @@ class HomeViewModel(
         }
     }
 
-    fun updateCategory(category: MerchantCategory?) {
+    private fun updateCategory(category: MerchantCategory?) {
         selectedCategory.value = category
         // Clear keyword when filtering by category
         if (category != null) {

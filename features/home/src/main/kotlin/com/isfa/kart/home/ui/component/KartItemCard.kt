@@ -89,7 +89,8 @@ fun KartItemCard(
                     )
                     onDrawWithContent {
                         drawContent()
-                        drawRect(highlight, blendMode = BlendMode.Overlay)
+                        // Removed BlendMode.Overlay to improve scroll performance
+                        drawRect(highlight)
                     }
                 }
                 .padding(20.dp)

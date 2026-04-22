@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
@@ -36,6 +37,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import app.isfa.kart.db.api.MerchantCategory
 import com.isfa.kart.design.KartActionChip
 import com.isfa.kart.design.KartSpacing
 import com.isfa.kart.design.KartTextField
@@ -46,13 +48,30 @@ import com.isfa.kart.home.ui.component.KartItemCard
 import com.isfa.kart.input.InputCardBottomSheet
 
 @Composable
-fun HomeScreenContent(state: HomeUiState) {
+fun HomeScreenContent(
+    state: HomeUiState,
+    onKeywordChange: (String) -> Unit = {},
+    onCategorySelect: (MerchantCategory?) -> Unit = {}
+) {
     val scrollState = rememberLazyListState()
 
     var keywordSearch by remember { mutableStateOf("") }
-    var selectedCategory by remember { mutableStateOf("Coffee") }
+    var selectedCategory by remember { mutableStateOf<MerchantCategory?>(null) }
 
     var shouldShowInputCardBottomSheet by remember { mutableStateOf(false) }
+
+    // Update search/filter when changed locally
+    val updateSearch: (String) -> Unit = {
+        keywordSearch = it
+        selectedCategory = null
+        onKeywordChange(it)
+    }
+
+    val updateCategory: (MerchantCategory?) -> Unit = {
+        selectedCategory = it
+        keywordSearch = ""
+        onCategorySelect(it)
+    }
 
     // Sticky chip filter
     val showStickyChips by remember {
@@ -115,7 +134,7 @@ fun HomeScreenContent(state: HomeUiState) {
             item {
                 KartTextField(
                     value = keywordSearch,
-                    onValueChange = { keywordSearch = it },
+                    onValueChange = updateSearch,
                     placeholder = "e.g. Fore",
                     leadingIcon = Icons.Default.Search
                 )
@@ -123,7 +142,7 @@ fun HomeScreenContent(state: HomeUiState) {
 
             // Filter Chip
             stickyHeader(key = "filter_chips") {
-                Row(
+                LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier
                         .fillMaxWidth()
@@ -135,19 +154,21 @@ fun HomeScreenContent(state: HomeUiState) {
                             }
                         )
                 ) {
-                    val categories = listOf("Coffee", "Groceries", "Retail")
-                    categories.forEach { category ->
+                    item {
                         KartActionChip(
-                            label = category,
-                            selected = selectedCategory == category,
-                            onClick = { selectedCategory = category }
+                            label = "All",
+                            selected = selectedCategory == null,
+                            onClick = { updateCategory(null) }
                         )
                     }
-                    KartActionChip(
-                        label = "More",
-                        onClick = {},
-                        leadingIcon = Icons.Default.Add
-                    )
+
+                    items(state.categories) { category ->
+                        KartActionChip(
+                            label = category.merchantName,
+                            selected = selectedCategory == category,
+                            onClick = { updateCategory(category) }
+                        )
+                    }
                 }
             }
 
@@ -187,6 +208,10 @@ fun HomeScreenContent(state: HomeUiState) {
 @Composable
 fun HomeScreenContentPreview() {
     KartTheme {
-        HomeScreenContent(HomeUiState.Empty)
+        HomeScreenContent(
+            state = HomeUiState.Empty,
+            onKeywordChange = {},
+            onCategorySelect = {}
+        )
     }
 }

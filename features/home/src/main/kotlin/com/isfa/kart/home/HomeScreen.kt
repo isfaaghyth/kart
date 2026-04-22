@@ -13,5 +13,9 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel(factory = HomeViewModelFacto
     val navigator = LocalNavigator.current
     val data by viewModel.state.collectAsStateWithLifecycle()
 
-    HomeScreenContent(data)
+    HomeScreenContent(
+        state = data,
+        onKeywordChange = viewModel::updateKeyword,
+        onCategorySelect = viewModel::updateCategory
+    )
 }

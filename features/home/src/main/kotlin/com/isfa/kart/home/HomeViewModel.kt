@@ -2,19 +2,17 @@ package com.isfa.kart.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.isfa.kart.db.api.BrandTypeOf
-import app.isfa.kart.db.api.MerchantCategory
-import app.isfa.kart.db.api.source.brand.KartBrandModel
 import app.isfa.kart.db.api.source.membership.CreateKartMembershipModel
-import app.isfa.kart.db.api.source.membership.KartMembershipDataSource
 import app.isfa.kart.db.api.source.subscription.CreateKartSubscriptionModel
 import app.isfa.kart.repository.api.KartAddCardRepository
 import app.isfa.kart.repository.api.KartBrandInfoRepository
 import app.isfa.kart.repository.api.KartCardRepository
 import app.isfa.kart.repository.api.KartSearchCardRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -25,13 +23,14 @@ class HomeViewModel(
     private val kartBrandInfoRepository: KartBrandInfoRepository
 ) : ViewModel() {
 
-    val data = kartFetchCardRepository
+    val state = kartFetchCardRepository
         .allCards()
+        .map { HomeUiState(cards = it) }
         .flowOn(Dispatchers.Default)
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = emptyList()
+            initialValue = HomeUiState.Empty
         )
 
     init {

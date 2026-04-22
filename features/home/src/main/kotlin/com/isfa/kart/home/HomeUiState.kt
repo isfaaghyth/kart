@@ -1,9 +1,9 @@
 package com.isfa.kart.home
 
-import app.isfa.kart.db.api.source.membership.KartMembershipModel
+import app.isfa.kart.repository.api.KartCardUiModel
 
 data class HomeUiState(
-    val cards: List<KartMembershipModel>
+    val cards: List<KartCardUiModel>
 ) {
 
     companion object {

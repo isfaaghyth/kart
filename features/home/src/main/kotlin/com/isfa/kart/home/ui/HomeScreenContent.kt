@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -151,24 +152,23 @@ fun HomeScreenContent(state: HomeUiState) {
             }
 
             // Card List
-            val itemCount = 100
-            items(count = (itemCount + 1) / 2) { rowIndex ->
+            items(
+                items = state.cards.chunked(2),
+                key = { it.firstOrNull()?.accountId ?: 0 }
+            ) { rowItems ->
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(KartSpacing.micro)
                 ) {
-                    for (columnIndex in 0 until 2) {
-                        val itemIndex = rowIndex * 2 + columnIndex
-                        if (itemIndex < itemCount) {
-                            Box(modifier = Modifier.weight(1f)) {
-                                KartItemCard(
-                                    brandName = "Fore",
-                                    accountId = "123",
-                                    onCardClicked = {}
-                                )
-                            }
-                        } else {
-                            Spacer(modifier = Modifier.weight(1f))
+                    rowItems.forEach { card ->
+                        Box(modifier = Modifier.weight(1f)) {
+                            KartItemCard(
+                                favIconUrl = card.brand.faviconUrl,
+                                brandName = card.brand.name,
+                                accountId = card.accountId,
+                                colors = card.brand.colors,
+                                onCardClicked = {}
+                            )
                         }
                     }
                 }

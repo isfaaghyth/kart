@@ -11,7 +11,7 @@ import com.isfa.kart.navigation.LocalNavigator
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = viewModel(factory = HomeViewModelFactory)) {
     val navigator = LocalNavigator.current
-    val data by viewModel.data.collectAsStateWithLifecycle()
+    val data by viewModel.state.collectAsStateWithLifecycle()
 
-    HomeScreenContent(HomeUiState.Empty)
+    HomeScreenContent(data)
 }

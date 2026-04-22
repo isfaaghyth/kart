@@ -26,6 +26,7 @@ dependencies {
     implementation(project(":libraries:design-system"))
     implementation(project(":libraries:navigation"))
     implementation(project(":libraries:utilities"))
+    implementation(libs.coil.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)

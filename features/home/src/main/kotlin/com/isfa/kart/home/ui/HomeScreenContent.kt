@@ -59,6 +59,7 @@ fun HomeScreenContent(
     var keywordSearch by remember { mutableStateOf("") }
     var selectedCategory by remember { mutableStateOf<MerchantCategory?>(null) }
 
+    var shouldHideAccountId by remember { mutableStateOf(false) }
     var shouldShowInputCardBottomSheet by remember { mutableStateOf(false) }
 
     // Update search/filter when changed locally
@@ -129,7 +130,12 @@ fun HomeScreenContent(
             verticalArrangement = Arrangement.spacedBy(KartSpacing.micro)
         ) {
             // Greeting
-            item { HomeGreeting() }
+            item {
+                HomeGreeting(
+                    shouldHidden = shouldHideAccountId,
+                    onAccountIdHidden = { shouldHideAccountId = !shouldHideAccountId }
+                )
+            }
 
             // Search Box
             item {
@@ -187,7 +193,11 @@ fun HomeScreenContent(
                             KartItemCard(
                                 favIconUrl = card.brand.faviconUrl,
                                 brandName = card.brand.name,
-                                accountId = card.accountId,
+                                accountId = if (shouldHideAccountId) {
+                                    "***"
+                                } else {
+                                    card.accountId
+                                },
                                 colors = card.brand.colors,
                                 onCardClicked = {
                                     onCardDetailPage(card.accountId)

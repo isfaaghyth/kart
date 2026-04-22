@@ -48,6 +48,7 @@ fun HomeScreenContent(
     val scrollState = rememberLazyListState()
 
     var shouldHideAccountId by remember { mutableStateOf(false) }
+    var searchKeyword by remember { mutableStateOf("") }
 
     // Sticky chip filter
     val showStickyChips by remember {
@@ -82,10 +83,14 @@ fun HomeScreenContent(
         // Search Box
         item {
             KartTextField(
-                value = state.keywordSearch,
-                onValueChange = { onEvent(HomeEvent.OnKeywordChanged(it)) },
+                value = searchKeyword,
+                onValueChange = {
+                    searchKeyword = it
+                    onEvent(HomeEvent.OnKeywordChanged(it))
+                },
                 placeholder = "e.g. Fore",
-                leadingIcon = Icons.Default.Search
+                leadingIcon = Icons.Default.Search,
+                shouldAsSearchBox = true
             )
         }
 

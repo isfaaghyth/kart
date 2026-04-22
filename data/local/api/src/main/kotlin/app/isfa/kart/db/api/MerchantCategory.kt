@@ -60,5 +60,7 @@ enum class MerchantCategory(val merchantName: String) {
     Furniture("Furniture"),
     Garden("Garden"),
     Hardware("Hardware"),
+    Telco("Telco"),
+    Productivity("Productivity"),
     Other("Other");
 }

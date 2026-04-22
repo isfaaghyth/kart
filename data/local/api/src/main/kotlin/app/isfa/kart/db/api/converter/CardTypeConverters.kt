@@ -11,5 +11,5 @@ object CardTypeConverters {
     fun fromType(cardType: CardType) = cardType.type
 
     @TypeConverter
-    fun fromString(str: String) = types[str] ?: CardType.Numeric
+    fun fromString(str: String) = types[str] ?: CardType.Code
 }

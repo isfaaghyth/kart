@@ -103,10 +103,10 @@ fun DetailCardScreen(
             data?.let { card ->
                 Spacer(modifier = Modifier.weight(1f))
 
-                if (card.isSubscription() != null) {
-                    ScannableCard(card = card)
-                } else {
-                    PhysicalCard(card = card)
+                when (card.cardType) {
+                    CardType.Card -> PhysicalCard(card = card)
+                    CardType.Code -> ScannableCard(card = card)
+                    CardType.Digital -> Text("ini digital")
                 }
 
                 Spacer(modifier = Modifier.weight(1f))

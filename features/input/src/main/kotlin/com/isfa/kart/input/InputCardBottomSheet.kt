@@ -27,6 +27,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.SheetState
+import androidx.compose.material3.Surface
+import androidx.compose.foundation.BorderStroke
+import app.isfa.kart.db.api.BrandTypeOf
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberDatePickerState
@@ -103,8 +106,9 @@ fun InputCardScreen(
 
     var merchantName by remember { mutableStateOf("") }
     var merchantSlug by remember { mutableStateOf("") }
+    var selectedBrand by remember { mutableStateOf<KartBrandModel?>(null) }
     var cardNumber by remember { mutableStateOf("") }
-    var cardType by remember { mutableStateOf("Member") } // Member or Subscription
+    var cardType by remember { mutableStateOf(CardType.Card) }
     var expandedMerchantList by remember { mutableStateOf(false) }
     var expandedSubscription by remember { mutableStateOf(false) }
     var subscriptionType by remember { mutableStateOf("Monthly") }
@@ -181,6 +185,7 @@ fun InputCardScreen(
                 onValueChange = {
                     merchantName = it
                     merchantSlug = "" // Clear slug if user is typing manually
+                    selectedBrand = null
                     expandedMerchantList = it.isNotEmpty()
                 },
                 label = "Brand Name".uppercase(),
@@ -210,7 +215,13 @@ fun InputCardScreen(
                             onClick = {
                                 merchantName = option.name
                                 merchantSlug = option.slug
+                                selectedBrand = option
                                 expandedMerchantList = false
+                                if (option.type is BrandTypeOf.Membership) {
+                                    cardType = CardType.Card
+                                } else {
+                                    cardType = CardType.Digital
+                                }
                             },
                             contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
                         )
@@ -239,101 +250,104 @@ fun InputCardScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Card Type (Member vs Subscription)
+        // Card Type
         Text(
             text = "Card Type".uppercase(),
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier.padding(bottom = 4.dp)
         )
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                RadioButton(
-                    selected = cardType == "Member",
-                    onClick = { cardType = "Member" }
-                )
-                Text(
-                    text = "Member",
-                    style = MaterialTheme.typography.bodyLarge,
-                    modifier = Modifier.padding(start = 4.dp)
-                )
-            }
-            Spacer(modifier = Modifier.width(16.dp))
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                RadioButton(
-                    selected = cardType == "Subscription",
-                    onClick = { cardType = "Subscription" }
-                )
-                Text(
-                    text = "Subscription",
-                    style = MaterialTheme.typography.bodyLarge,
-                    modifier = Modifier.padding(start = 4.dp)
-                )
-            }
-        }
 
-        // Subscription Type Dropdown (conditionally shown)
-        if (cardType == "Subscription") {
-            Spacer(modifier = Modifier.height(16.dp))
-            ExposedDropdownMenuBox(
-                expanded = expandedSubscription,
-                onExpandedChange = { expandedSubscription = it }
-            ) {
-                KartTextField(
-                    value = subscriptionType,
-                    onValueChange = {},
-                    label = "Subscription Type",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .menuAnchor(),
-                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedSubscription) }
-                )
-                ExposedDropdownMenu(
-                    expanded = expandedSubscription,
-                    onDismissRequest = { expandedSubscription = false }
-                ) {
-                    subscriptionOptions.forEach { option ->
-                        DropdownMenuItem(
-                            text = { Text(option) },
-                            onClick = {
-                                subscriptionType = option
-                                expandedSubscription = false
+        val isMembership = selectedBrand == null || selectedBrand?.type is BrandTypeOf.Membership
+        val isSubscription = selectedBrand == null || selectedBrand?.type is BrandTypeOf.Subscription
+
+        SelectableCard(
+            title = "Card",
+            subtitle = "Select this if you want show the membership as a card",
+            selected = cardType == CardType.Card,
+            enabled = isMembership,
+            onClick = { cardType = CardType.Card }
+        )
+
+        SelectableCard(
+            title = "Code",
+            subtitle = "Show the QRCode or Barcode for accountId",
+            selected = cardType == CardType.Code,
+            enabled = isMembership,
+            onClick = { cardType = CardType.Code }
+        )
+
+        SelectableCard(
+            title = "Digital",
+            subtitle = "Your subscription will be notified one day before expiration date.",
+            selected = cardType == CardType.Digital,
+            enabled = isSubscription,
+            onClick = { cardType = CardType.Digital },
+            content = {
+                Column {
+                    ExposedDropdownMenuBox(
+                        expanded = expandedSubscription,
+                        onExpandedChange = { expandedSubscription = it }
+                    ) {
+                        KartTextField(
+                            value = subscriptionType,
+                            onValueChange = {},
+                            label = "Subscription Type",
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .menuAnchor(),
+                            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expandedSubscription) }
+                        )
+                        ExposedDropdownMenu(
+                            expanded = expandedSubscription,
+                            onDismissRequest = { expandedSubscription = false }
+                        ) {
+                            subscriptionOptions.forEach { option ->
+                                DropdownMenuItem(
+                                    text = { Text(option) },
+                                    onClick = {
+                                        subscriptionType = option
+                                        expandedSubscription = false
+                                    }
+                                )
                             }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    // Expiration Date
+                    Box(modifier = Modifier.fillMaxWidth().clickable { showDatePicker = true }) {
+                        KartTextField(
+                            value = expirationDate?.let { dateFormatter.format(Date(it)) } ?: "",
+                            onValueChange = {},
+                            label = "Expiration Date".uppercase(),
+                            placeholder = "Select Date",
+                            modifier = Modifier.fillMaxWidth(),
+                            trailingIcon = null
+                        )
+                        // Overlay to catch clicks since KartTextField might be focusing
+                        Box(
+                            modifier = Modifier
+                                .matchParentSize()
+                                .background(Color.Transparent)
+                                .clickable { showDatePicker = true }
                         )
                     }
                 }
             }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Expiration Date
-            Box(modifier = Modifier.fillMaxWidth().clickable { showDatePicker = true }) {
-                KartTextField(
-                    value = expirationDate?.let { dateFormatter.format(Date(it)) } ?: "",
-                    onValueChange = {},
-                    label = "Expiration Date".uppercase(),
-                    placeholder = "Select Date",
-                    modifier = Modifier.fillMaxWidth(),
-                    trailingIcon = null // Optional: could add a calendar icon
-                )
-                // Overlay to catch clicks since KartTextField might be focusing
-                Box(modifier = Modifier.matchParentSize().background(Color.Transparent).clickable { showDatePicker = true })
-            }
-        }
+        )
 
         Spacer(modifier = Modifier.height(32.dp))
 
         KartButton(
-            text = "Save $cardType",
+            text = "Save",
             onClick = {
-                val action = if (cardType == "Member") {
+                val action = if (cardType == CardType.Card || cardType == CardType.Code) {
                     InputCardAction.AddMemberCard(
                         brandSlug = merchantSlug,
                         accountId = cardNumber,
-                        cardType = CardType.Barcode // Defaulting to Barcode for now
+                        cardType = cardType
                     )
                 } else {
                     val subType = when (subscriptionType) {
@@ -346,7 +360,7 @@ fun InputCardScreen(
                     InputCardAction.AddSubscriptionCard(
                         brandSlug = merchantSlug,
                         accountId = cardNumber,
-                        cardType = CardType.Numeric, // Defaulting to Numeric for subscription
+                        cardType = CardType.Digital,
                         subscriptionType = subType,
                         expirationDate = expirationDate ?: 0L
                     )
@@ -357,6 +371,52 @@ fun InputCardScreen(
             modifier = Modifier.fillMaxWidth(),
             enabled = merchantSlug.isNotEmpty() && cardNumber.isNotEmpty()
         )
+    }
+}
+
+@Composable
+fun SelectableCard(
+    title: String,
+    subtitle: String,
+    selected: Boolean,
+    enabled: Boolean,
+    onClick: () -> Unit,
+    content: @Composable (() -> Unit)? = null
+) {
+    Surface(
+        onClick = onClick,
+        enabled = enabled,
+        shape = MaterialTheme.shapes.medium,
+        border = BorderStroke(
+            1.dp,
+            if (selected) MaterialTheme.colorScheme.primary
+            else MaterialTheme.colorScheme.outlineVariant
+        ),
+        color = if (selected) MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.1f) else MaterialTheme.colorScheme.surface,
+        modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                RadioButton(selected = selected, onClick = null, enabled = enabled)
+                Spacer(modifier = Modifier.width(16.dp))
+                Column {
+                    Text(
+                        text = title,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = if (enabled) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
+                    )
+                    Text(
+                        text = subtitle,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = if (enabled) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.38f)
+                    )
+                }
+            }
+            if (selected && content != null) {
+                Spacer(modifier = Modifier.height(16.dp))
+                content()
+            }
+        }
     }
 }
 

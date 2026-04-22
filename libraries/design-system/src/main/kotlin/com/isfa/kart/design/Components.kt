@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.AssistChip
@@ -37,7 +39,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -120,10 +124,12 @@ fun KartTextField(
     placeholder: String? = null,
     leadingIcon: ImageVector? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
-    isMono: Boolean = false
+    isMono: Boolean = false,
+    shouldAsSearchBox: Boolean = false,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isFocused by interactionSource.collectIsFocusedAsState()
+    val focusManager = LocalFocusManager.current
 
     Column(modifier = modifier) {
         if (label.isNotEmpty()) {
@@ -136,6 +142,21 @@ fun KartTextField(
         }
         TextField(
             value = value,
+            maxLines = if (shouldAsSearchBox) 1 else Int.MAX_VALUE,
+            keyboardOptions = if (shouldAsSearchBox) {
+                KeyboardOptions(imeAction = ImeAction.Search)
+            } else {
+                KeyboardOptions.Default
+            },
+            keyboardActions = if (shouldAsSearchBox) {
+                KeyboardActions(
+                    onSearch = {
+                        focusManager.clearFocus()
+                    }
+                )
+            } else {
+                KeyboardActions.Default
+            },
             onValueChange = onValueChange,
             placeholder = placeholder?.let { { Text(it) } },
             shape = InputFieldShape,

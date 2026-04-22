@@ -51,7 +51,8 @@ import com.isfa.kart.input.InputCardBottomSheet
 fun HomeScreenContent(
     state: HomeUiState,
     onKeywordChange: (String) -> Unit = {},
-    onCategorySelect: (MerchantCategory?) -> Unit = {}
+    onCategorySelect: (MerchantCategory?) -> Unit = {},
+    onCardDetailPage: (String) -> Unit = {}
 ) {
     val scrollState = rememberLazyListState()
 
@@ -188,7 +189,9 @@ fun HomeScreenContent(
                                 brandName = card.brand.name,
                                 accountId = card.accountId,
                                 colors = card.brand.colors,
-                                onCardClicked = {}
+                                onCardClicked = {
+                                    onCardDetailPage(card.accountId)
+                                }
                             )
                         }
                     }

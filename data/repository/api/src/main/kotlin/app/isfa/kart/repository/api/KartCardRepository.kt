@@ -1,9 +1,5 @@
 package app.isfa.kart.repository.api
 
-import app.isfa.kart.db.api.BrandTypeOf
-import app.isfa.kart.db.api.MerchantCategory
-import app.isfa.kart.db.api.source.membership.CreateKartMembershipModel
-import app.isfa.kart.db.api.source.subscription.CreateKartSubscriptionModel
 import kotlinx.coroutines.flow.Flow
 
 interface KartCardRepository {
@@ -13,6 +9,9 @@ interface KartCardRepository {
      * Use this for the main home feed.
      */
     fun allCards(): Flow<List<KartCardUiModel>>
+
+    /** Get card detail by card ID */
+    suspend fun cardDetail(accountId: String): KartCardUiModel?
 
     /** Emits only [KartCardUiModel.Member] cards, sorted newest-first. */
     fun members(): Flow<List<KartCardUiModel.Member>>

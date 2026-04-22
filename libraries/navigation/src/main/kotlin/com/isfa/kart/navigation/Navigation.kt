@@ -10,5 +10,5 @@ sealed interface Navigation : NavKey {
     data object Home : Navigation
 
     @Serializable
-    data class Detail(val cardId: Int) : Navigation
+    data class Detail(val accountId: String) : Navigation
 }

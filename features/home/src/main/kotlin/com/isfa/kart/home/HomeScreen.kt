@@ -7,6 +7,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.isfa.kart.home.di.HomeViewModelFactory
 import com.isfa.kart.home.ui.HomeScreenContent
 import com.isfa.kart.navigation.LocalNavigator
+import com.isfa.kart.navigation.Navigation
 
 @Composable
 fun HomeScreen(viewModel: HomeViewModel = viewModel(factory = HomeViewModelFactory)) {
@@ -16,6 +17,9 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel(factory = HomeViewModelFacto
     HomeScreenContent(
         state = data,
         onKeywordChange = viewModel::updateKeyword,
-        onCategorySelect = viewModel::updateCategory
+        onCategorySelect = viewModel::updateCategory,
+        onCardDetailPage = {
+            navigator.navigateTo(Navigation.Detail(it))
+        }
     )
 }

@@ -22,6 +22,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(project(":data:local:api"))
+    implementation(project(":data:repository:api"))
     implementation(project(":libraries:design-system"))
     implementation(project(":libraries:navigation"))
     implementation(project(":libraries:utilities"))

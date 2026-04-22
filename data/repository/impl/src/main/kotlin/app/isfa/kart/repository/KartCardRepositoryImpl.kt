@@ -8,6 +8,7 @@ import app.isfa.kart.repository.api.KartCardRepository
 import app.isfa.kart.repository.api.KartCardUiModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 class KartCardRepositoryImpl(
@@ -20,6 +21,10 @@ class KartCardRepositoryImpl(
         subscriptionDataSource.subscriptions(),
     ) { members, subs ->
         (members.map { it.toCard() } + subs.map { it.toCard() }).sortedByDescending { it.id }
+    }
+
+    override suspend fun cardDetail(accountId: String): KartCardUiModel? {
+        return allCards().first().find { it.accountId == accountId }
     }
 
     override fun members(): Flow<List<KartCardUiModel.Member>> =

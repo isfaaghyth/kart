@@ -24,4 +24,6 @@ sealed class KartCardUiModel {
         override val brand: KartBrandModel,
         val subscriptionType: SubscriptionType,
     ) : KartCardUiModel()
+
+    fun isSubscription() = this as? Subscription
 }

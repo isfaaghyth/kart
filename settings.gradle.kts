@@ -39,3 +39,6 @@ include(":data:local:impl")
 
 include(":data:repository:api")
 include(":data:repository:impl")
+
+// KMPs
+include(":shared")

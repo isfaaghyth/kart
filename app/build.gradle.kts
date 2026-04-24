@@ -58,6 +58,7 @@ dependencies {
     implementation(project(":libraries:design-system"))
     implementation(project(":libraries:i18n"))
     implementation(project(":libraries:navigation"))
+    implementation(project(":shared"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

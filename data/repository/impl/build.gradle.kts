@@ -13,8 +13,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":data:repository:api"))
-    implementation(project(":data:local:impl"))
+    implementation(projects.data.repository.api)
+    implementation(projects.data.local.impl)
     implementation(libs.kotlinx.coroutines)
     implementation(libs.kotlinx.serialization.json)
 

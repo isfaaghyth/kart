@@ -40,6 +40,25 @@ android {
 }
 
 dependencies {
+    // Data
+    implementation(projects.data.local.api)
+    implementation(projects.data.local.impl)
+    implementation(projects.data.repository.api)
+    implementation(projects.data.repository.impl)
+    
+    // Features
+    implementation(projects.features.home)
+    implementation(projects.features.detail)
+    implementation(projects.features.input)
+    
+    // Libraries
+    implementation(projects.libraries.designSystem)
+    implementation(projects.libraries.i18n)
+    implementation(projects.libraries.navigation)
+    
+    // KMP
+    implementation(projects.shared)
+    
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -48,17 +67,6 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
-    implementation(project(":data:local:api-kmp"))
-    implementation(project(":data:local:impl"))
-    implementation(project(":data:repository:api"))
-    implementation(project(":data:repository:impl"))
-    implementation(project(":features:home"))
-    implementation(project(":features:detail"))
-    implementation(project(":features:input"))
-    implementation(project(":libraries:design-system"))
-    implementation(project(":libraries:i18n"))
-    implementation(project(":libraries:navigation"))
-    implementation(project(":shared"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

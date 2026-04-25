@@ -1,20 +1,39 @@
 plugins {
-    alias(libs.plugins.android.library)
-    alias(libs.plugins.jetbrains.kotlin.serialization)
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
 }
 
-android {
-    namespace = "app.isfa.kart.db.api"
+kotlin {
+    androidLibrary {
+        namespace = "app.isfa.kart.db.api"
+        compileSdk {
+            version = release(36) { minorApiLevel = 1 }
+        }
+        minSdk = 24
+    }
 
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
+    val xcfName = "DbApi"
+
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = xcfName
         }
     }
-}
 
-dependencies {
-    implementation(libs.kotlinx.serialization.core)
-    implementation(libs.androidx.room.common)
-    implementation(libs.kotlinx.coroutines)
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation(libs.kotlin.stdlib)
+
+                implementation(libs.kotlinx.serialization.core)
+                implementation(libs.kotlinx.coroutines)
+
+                implementation(libs.androidx.room.kmp.common)
+            }
+        }
+    }
 }

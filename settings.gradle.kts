@@ -34,7 +34,6 @@ include(":libraries:i18n")
 include(":libraries:navigation")
 include(":libraries:utilities")
 
-include(":data:local:api")
 include(":data:local:impl")
 
 include(":data:repository:api")
@@ -42,4 +41,6 @@ include(":data:repository:impl")
 
 // KMPs
 include(":shared")
-include(":data:local:api-kmp")
+include(":data:local:api")
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")

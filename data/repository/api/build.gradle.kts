@@ -16,6 +16,6 @@ dependencies {
     // Brings in KartBrandModel, KartMembershipModel, KartSubscriptionModel,
     // BrandTypeOf, MerchantCategory, CardType, SubscriptionType, and the
     // two data-source interfaces the repository depends on.
-    api(project(":data:local:api"))
+    api(project(":data:local:api-kmp"))
     implementation(libs.kotlinx.coroutines)
 }

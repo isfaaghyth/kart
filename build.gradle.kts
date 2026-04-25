@@ -8,6 +8,7 @@ plugins {
     // Yes, this is intended
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.compose.multiplatform) apply false
     alias(libs.plugins.android.kotlin.multiplatform.library) apply false
     alias(libs.plugins.android.lint) apply false
 }
